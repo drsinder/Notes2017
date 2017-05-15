@@ -1,0 +1,74 @@
+@model IEnumerable<Notes2017.Models.BaseNoteHeader>
+
+@{
+    ViewData["Title"] = "Headers";
+}
+
+<h2>Headers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseNoteHeaderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteSubject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Responses)
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseNoteHeaderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteSubject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Responses)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

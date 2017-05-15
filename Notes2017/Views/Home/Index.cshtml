@@ -1,0 +1,209 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@using Notes2017.App_Code
+
+@model NFViewModel
+@{
+    ViewData["Title"] = "Home";
+    bool Prod = Context.Request.IsHttps;
+    string name = "Notes 2017";
+    //if (!Prod) { name += " **"; }
+    bool clockupdate = (bool)ViewBag.UpdateClock;
+}
+
+<div class="jumbotron">
+    <div>
+        <h5 id="usercount" class="keep-right"></h5>
+        <h2>Welcome to @name <img src="~/favicon.ico" width="32" /></h2>
+        <h5>
+            <strong>
+                <span id="homepagetime">
+                    @((Model.tzone.Local(@DateTime.Now.ToUniversalTime())).ToShortTimeString()) @Model.tzone.Abbreviation -
+                    @((Model.tzone.Local(@DateTime.Now.ToUniversalTime())).ToLongDateString())
+                </span>
+                @if (clockupdate)
+            {
+                    <span id="digitalclock" class="keep-right"></span> }&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            </strong>
+        </h5>
+    </div>
+</div>
+@if (Model.Message != null && Model.Message.Length > 5)
+{
+    <div class="sysmessage">@Html.Raw(Model.Message)</div>
+}
+<div class="row">
+    <div class="col-md-3"></div>
+
+    @if (User.IsInRole("User"))
+    {
+        <div class="col-md-4 roundedgrayindexinput">
+            <form asp-controller="NoteDisplay" asp-action="EnterFile" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <strong>Enter a NoteFile Name:</strong><input asp-for="FileName" class="form-control short-input" autofocus />
+                    <strong>or</strong>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-file dropdown-toggle form-control short-input" data-toggle="dropdown">
+                            <strong><span class="glyphicon glyphicon-folder-open"></span> -- Select a File --</strong> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (var item in Model.AFiles)
+                            {
+                                string link = "NoteDisplay/Enter/" + @item.Value;
+                                <li><a href=@link><strong>@item.Text</strong></a></li>
+                            }
+                        </ul>
+                    </div>
+                    <br /><strong>or</strong>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-title dropdown-toggle form-control short-input" data-toggle="dropdown">
+                            <strong><span class="glyphicon glyphicon-folder-open"></span> -- Select a Title --</strong> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (var item in Model.ATitles)
+                            {
+                                string link = "NoteDisplay/Enter/" + @item.Value;
+                                <li><a href=@link><strong>@item.Text</strong></a></li>
+                            }
+                        </ul>
+                    </div>
+
+                    @*@Html.DropDownList("AFiles", Model.AFiles, htmlAttributes: new { @class = "form-control short-input" })<strong> or</strong>
+                        @Html.DropDownList("ATitles", Model.ATitles, htmlAttributes: new { @class = "form-control short-input" })*@
+
+                    <script type="text/javascript">
+                        var mytextbox = document.getElementById('FileName');
+                        var mydropdown = document.getElementById('AFiles');
+                        var mydropdown2 = document.getElementById('ATitles');
+
+                        document.onfocus = function () { mytextbox.focus(); }
+
+                        mydropdown.onchange = function () {
+                            mytextbox.value = this.value;
+                            mytextbox.focus();
+                            this.form.submit();
+                        }
+
+                        mydropdown2.onchange = function () {
+                            mytextbox.value = this.value;
+                            mytextbox.focus();
+                            this.form.submit();
+                        }
+
+                    </script>
+
+                </div>
+            </form>
+        </div>
+    }
+</div>
+<div class="row">
+    @*<hr/>*@
+    @if (User.IsInRole("User"))
+    {
+        <div class="col-md-3 roundedgray">
+            <h4>NoteFile Functions</h4>
+            <ul>
+                <li><a href="~/NoteFileList/Index" title="Complete list of NoteFiles">NoteFile List</a></li>
+                <li><a href="~/Sequencers/Index" title="Set up your Sequencer to keep up to date">Set up Sequencer</a></li>
+                <li><a href="~/NoteDisplay/BeginSequence" title="See Notes written since last sequence">Use Sequencer</a></li>
+                <li><a href="~/SQLFiles/Index" title="Find images in Notes and upload new ones" target="_blank">Image File Database</a></li>
+                <li><a href="~/Subscriptions/Index" title="Get email copies of new Notes">Manage Subscriptions</a></li>
+                <li><a href="~/Export/Index" title="Download a complete NoteFile as Text or Html">Export a NoteFile</a></li>
+                <li><a href="~/Home/SetTimeZone" title="Set your prefered Time Zone">Set Time Zone</a></li>
+                <li><a href="~/Home/Preferences" title="Set other perferences">Set Preferences</a></li>
+            </ul>
+        </div>
+    }
+    <div class="col-md-3 roundedgray">
+        <h4>HELP</h4>
+        <ul>
+            <li><a href="~/Navigation/Index" title="Help with navigating Notes">Navigation</a></li>
+            <li><a href="~/Home/About">About Notes 2017</a></li>
+            <li><a href="~/Home/Setup">Setting up Notes 2017</a></li>
+            <li><a href="~/Home/OpenSource">Open Source Project</a></li>
+            <li><a href="~/Home/Contact" title="See list of current users">User List</a></li>
+            <li><a href="~/Home/Index" title="Open another window" target="_blank">Open another window</a></li>
+        </ul>
+    </div>
+    @if (User.IsInRole("User"))
+    {
+        <div class="col-md-2 roundedgray">
+            <h4>Important Files</h4>
+            <ul>
+                @foreach (NoteFile x in (List<NoteFile>)ViewData["IFiles"])
+                {
+                    <li><strong>@Html.ActionLink(x.NoteFileName, "Index", "NoteDisplay", new { id = x.NoteFileID }, null)</strong></li>
+                }
+            </ul>
+        </div>
+    }
+    @if (User.IsInRole("CrazyWords"))
+    {
+        <div class="col-md-2 roundedgray">
+            <h4>Word Games</h4>
+            <ul>
+                <li><a href="~/CrazyWords/Index/1">Crazy Words (list 1)</a></li>
+                <li><a href="~/CrazyWords/Index/2">Crazy Words (list 2)</a></li>
+                <li><a href="~/CrazyWords/Index/3">Crazy Words (list 3)</a></li>
+                <li><a href="~/CrazyWords/Index/4">Crazy Words (list 4)</a></li>
+            </ul>
+        </div>
+    }
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#collapse">
+        Admin Options
+    </button>
+    <div id="collapse" class="collapse">
+        <div class="row roundedgray">
+            <div class="col-md-3">
+                <ul>
+                    <li><a href="~/NoteFiles/Index">NoteFile Manager</a></li>
+                    <li><a href="~/Role/Index">Role Manager</a></li>
+                    <li><a href="~/User/Index">User Manager</a></li>
+                    <li><a href="~/HomePageMessages/Index">Home Page Message</a></li>
+                    <li><a href="~/Home/SystemMessage" target="_blank">Send System Message</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li><a href="~/DataSpy/Index">Raw Data Viewer <strong>(Audited)</strong></a></li>
+                    <li><a href="~/Hangfire" target="_blank">Hangfire Dashboard</a></li>
+                    <li><a href="https://portal.azure.com/#" target="_blank">Azure Portal</a></li>
+                    <li><a href="https://dashboard.pusher.com/apps/@Global.PusherAppId/" target="_blank">Pusher Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    setInterval(function () {
+        var clock = document.getElementById('digitalclock');
+        if (clock != null) {
+            var time = new Date().toTimeString();
+            var split = time.split('(');
+            clock.innerHTML = split[0];
+        }
+    }, 1000);
+
+    function showUsers() {
+        document.getElementById('usercount').innerHTML = '<a href="/Home/Contact/" >Users: ' + membercount + '</a>';
+    }
+
+    function add_member(userid, userinfo)
+    {
+        membercount = membercount + 1;
+        showUsers();
+    }
+
+    function  remove_member(userid, userinfo)
+    {
+        membercount = membercount - 1;
+        showUsers();
+    }
+</script>

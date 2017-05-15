@@ -1,0 +1,45 @@
+@model IEnumerable<Notes2017.Models.Words>
+
+@{
+    ViewData["Title"] = "Words";
+}
+
+<h2>Words</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Word)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entered)
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Word)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ListNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entered)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

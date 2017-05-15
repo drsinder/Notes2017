@@ -1,0 +1,36 @@
+﻿@using Notes2017.Models
+
+@model IEnumerable<Notes2017.Controllers.HofCounts>
+
+@{
+    ViewBag.Title = "Hall Of Fame";
+}
+
+<h2>Hall Of Fame</h2>
+
+<p>
+@Html.ActionLink("Return", "Index", new { id = ViewData["wordList"]})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count)
+        </td>
+    </tr>
+}
+
+</table>

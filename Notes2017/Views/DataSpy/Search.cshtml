@@ -1,0 +1,63 @@
+@model IEnumerable<Notes2017.Models.Search>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Option)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Option)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

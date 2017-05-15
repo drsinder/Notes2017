@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+}
+<h2>@ViewData["Title"].</h2>
+
+<address>
+    <strong>Support:</strong> <a href="mailto:sinder@illinois.edu">sinder@illinois.edu</a><br />
+</address>
+<hr />
+<h5>User List - Click to chat</h5>
+<ul id="userlist"></ul>
+
+<script>
+    function add_member(userid, userinfo)
+    {
+        membercount = membercount + 1;
+        var username = document.getElementById("notesusername");
+        var uname = username.innerHTML;
+
+        if (userinfo.name != uname)
+            $('#userlist').append('<li id="' + userid + '"><a href="/Home/Chat/' + userinfo.name + '?id2=true"> <strong>' + userinfo.name + '</strong></a></li>');
+        else
+            $('#userlist').append('<li id="' + userid + '">' + userinfo.name + '</li>');
+
+        //if (userinfo.name != uname)
+        //    $('#userlist').append('<li id="' + userid + '"><a href="/Home/Chat/' + userinfo.name + '?id2=true"> <strong>' + userinfo.name + '</strong></a> at ' + userinfo.base_url + '</li>');
+        //else
+        //    $('#userlist').append('<li id="' + userid + '">' + userinfo.name + '</strong> at ' + userinfo.base_url + '</li>');
+
+    }
+
+    function  remove_member(userid, userinfo)
+    {
+        membercount = membercount - 1;
+        var userlist = document.getElementById(userid)
+        if (userlist == null)
+            return;
+        userlist.remove();
+    }
+</script>

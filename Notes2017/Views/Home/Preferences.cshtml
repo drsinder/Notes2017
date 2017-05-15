@@ -1,0 +1,186 @@
+@model Notes2017.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Preferences";
+}
+
+<h2>Preferences</h2>
+
+<form asp-action="Preferences">
+    <div class="form-horizontal">
+        <h4>Application User Preferences</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input asp-for="AccessFailedCount" class="form-control" type="hidden" />
+        <input asp-for="ConcurrencyStamp" class="form-control" type="hidden" />
+        <input asp-for="Email" class="form-control" type="hidden" />
+        <input asp-for="EmailConfirmed" type="hidden" />
+        <input type="hidden" asp-for="LockoutEnabled" />
+        <input type="hidden" asp-for="LockoutEnd" class="form-control" />
+        <input type="hidden" asp-for="NormalizedEmail" class="form-control" />
+        <input type="hidden" asp-for="NormalizedUserName" class="form-control" />
+        <input type="hidden" asp-for="PasswordHash" class="form-control" />
+        <input type="hidden" asp-for="PhoneNumber" class="form-control" />
+        <input type="hidden" asp-for="PhoneNumberConfirmed" />
+        <input type="hidden" asp-for="SecurityStamp" class="form-control" />
+        <input type="hidden" asp-for="TimeZoneID" class="form-control" />
+        <input type="hidden" asp-for="TwoFactorEnabled" />
+        <input type="hidden" asp-for="UserName" class="form-control" />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Pref1" />
+                    <label asp-for="Pref1"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Pref2" />
+                    <label asp-for="Pref2"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MyStyle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @*<input type="text" asp-for="MyStyle" class="form-control long-input" />*@
+
+                @Html.TextAreaFor(model => model.MyStyle, 20, 30, new {style = "form-control width: 300px;" }) 
+
+                <span asp-validation-for="MyStyle" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+        <br />
+        <strong class="col-md-2">Default Style to copy parts from</strong>
+        <div class="col-md-10"><textarea id="defaultstyle" rows="20" , cols="30">@ViewBag.DefaultStyle</textarea></div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref3" />
+                    <label hidden asp-for="Pref3"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref4" />
+                    <label hidden asp-for="Pref4"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref5" />
+                    <label hidden type="hidden" asp-for="Pref5"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref6" />
+                    <label hidden asp-for="Pref6"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref7" />
+                    <label hidden asp-for="Pref7"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input type="hidden" asp-for="Pref8" />
+                    <label hidden asp-for="Pref8"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label hidden asp-for="Ipref2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref2" class="form-control" />
+                <span asp-validation-for="Ipref2" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref3" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref3" class="form-control" />
+                <span asp-validation-for="Ipref3" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref4" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref4" class="form-control" />
+                <span asp-validation-for="Ipref4" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref5" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref5" class="form-control" />
+                <span asp-validation-for="Ipref5" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref6" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref6" class="form-control" />
+                <span asp-validation-for="Ipref6" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref7" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref7" class="form-control" />
+                <span asp-validation-for="Ipref7" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label hidden asp-for="Ipref8" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="hidden" asp-for="Ipref8" class="form-control" />
+                <span asp-validation-for="Ipref8" class="text-danger" />
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Home</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        document.getElementById('MyStyle').style.width = "400px";
+        document.getElementById('defaultstyle').style.width = "400px";
+    </script>
+}

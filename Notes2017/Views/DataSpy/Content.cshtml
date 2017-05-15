@@ -1,0 +1,84 @@
+@model IEnumerable<Notes2017.Models.NoteContent>
+
+@{
+    ViewData["Title"] = "Content";
+}
+
+<h2>Content</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectorMesssage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteSubject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseOrdinal)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirectorMesssage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteBody)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteSubject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseOrdinal)
+        </td>
+        <td>
+            <a asp-action="EditContent" asp-route-id="@item.NoteID">Edit Content</a>
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

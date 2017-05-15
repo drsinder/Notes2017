@@ -1,0 +1,69 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@model NFViewModel
+
+@{
+    ViewBag.Title = "Export";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        @if (User.IsInRole("User"))
+        {
+            <h3>Export a NoteFile</h3>
+            <form asp-controller="Export" asp-action="Index" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <strong>
+                        Enter a NoteFile Name to Export:<input asp-for="FileName" class="form-control short-input" autofocus /> or
+                        @Html.DropDownList("AFiles", Model.AFiles, htmlAttributes: new { @class = "form-control short-input" }) or
+                        @Html.DropDownList("ATitles", Model.ATitles, htmlAttributes: new { @class = "form-control short-input" })
+                    </strong>
+                    <script type="text/javascript">
+                    var mytextbox = document.getElementById('FileName');
+                    var mydropdown = document.getElementById('AFiles');
+                    var mydropdown2 = document.getElementById('ATitles');
+
+                    document.onfocus = function () { mytextbox.focus(); }
+
+                    mydropdown.onchange = function () {
+                    mytextbox.value = this.value;
+                    mytextbox.focus();
+                    this.form.submit();
+                    }
+
+                    mydropdown2.onchange = function () {
+                        mytextbox.value = this.value;
+                        mytextbox.focus();
+                        this.form.submit();
+                    }
+                    </script>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isHtml" />
+                                <label asp-for="isHtml"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isCollapsible" />
+                                <label asp-for="isCollapsible"></label>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="directOutput" />
+                                <label asp-for="directOutput"></label>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </form>
+        }
+     </div>   
+</div>

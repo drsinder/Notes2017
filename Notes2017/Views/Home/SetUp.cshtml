@@ -1,0 +1,152 @@
+﻿@using Notes2017.ViewModels
+@{
+    ViewData["Title"] = "SetUp Page";
+}
+<div class="jumbotron">
+    <h2>Welcome to Notes 2017 SetUp <img src="~/favicon.ico" width="32" /></h2>
+    <h4>Today is @DateTime.Now.ToLongDateString(). - The Time is @DateTime.Now.ToShortTimeString(). @TZ.GetTimeZone(DateTime.Now)</h4>
+</div>
+<div class="row">
+   <div class="col-md-12">
+       <h4>This is an open source project covered by the GNU General Public License
+**  version 3 <a href="http://www.gnu.org/licenses/gpl-3.0.txt">http://www.gnu.org/licenses/gpl-3.0.txt</a>.  Source may be found in the
+       Visual Team Server location <a href="https://drsinder.visualstudio.com/Weather/_versionControl?path=%24%2FWeather%2FNotes2017&version=T&_a=contents">
+                                       https://drsinder.visualstudio.com/Weather/_versionControl?path=%24%2FWeather%2FNotes2017&version=T&_a=contents</a>
+       To request access send email to <a href="mailto:sinder@illinois.edu">sinder@illinois.edu</a></h4>
+       <h3 class="text-danger">Please print this page for future reference.  Also record the URL so that you can return here!!</h3>
+       <p class="text-warning"><strong>The reason you have arrived at this page is that it has been detected that your database is not setup.
+       Once your database is properly setup you will no longer be routed to this page automatically.  So, print it now and record the URL
+       so that you can return later.</strong></p>
+       <p>
+           <h4>Overview of set up:</h4>
+           <ol>
+               <li>Using https / SSL</li>
+               <li>Setting up Sendgrid for email</li>
+               <li>Setting Twilio for two factor authentication (optional)</li>
+               <li>Setting up the database</li>
+               <li>Other Configuration</li>
+               <li>Simple code changes in Startup.cs</li>
+               <li>Create a login for yourself that will be the Admin</li>
+               <li>Creating NoteFiles</li>
+               <li>Exploring</li>
+               <li>Telling people about your installation</li>
+           </ol>
+       </p>
+
+       <h4>Using https / SSL</h4>
+       <p>
+           Since people will login with a password it is important that your installation is protected with a
+           secure connection.  The use of a Server Certificate and https is highly recommended.  Talk to your
+           web site administrator about this or consult with the help or FAQ from your hosting provider.
+       </p>
+
+       <h4>Setting up Sendgrid for email</h4>
+       <p>Notes 2017 sends an email to a user when they register.  They must click on the link in that
+       email before they will be permitted to login. This is done so that people do not use
+       phoney email addresses.  The email address must be confirmed so that the user can use the link
+       for forgotten passwords to reset their password if it is forgotten.  Notes 2017 uses 
+       Sendgrid to send emails.  You will need to get a free or paid for Sendgrid account.
+       <a href="https://sendgrid.com/transactional-email/pricing" target="_blank">See here for information</a>. 
+       Look at the bottom of the page for the FREE PLAN.  Or choose another plan if you like.  
+       From your Sendgrid DASHBAORD select SETTINGS -> Whitelabels -> Domains.  Add a domain for your
+       Web and configure your domain on your hosting provider.  Wait until well after (a few hours) your
+       configuration validates before you attempt to send email (login)</p>
+
+       <h4>Setting Twilio for two factor authentication (optional)</h4>
+       <p>
+           If you would like to use two factor authentication
+           <a href="https://www.twilio.com/" target="_blank">sign-up for a Twilio account.</a>.
+       </p>
+
+       <p>In your appsetting.json file(s), in the DefautAdmin section set the various values
+       as in the example below for sendgrid and twilio:</p>
+       <pre>
+             "DefaultAdmin": {
+                "Email": "sinder@illinois.edu",
+                "SendGridEmail": "sinder@illinois.edu",
+                "SendGridEmailName": "Dale Sinder on behalf of Notes 2017",
+                "SendGridApiKey": "from sendgrid",
+                "TwilioName": "from twilio",
+                "TwilioPassword": "from twilio",
+                "TwilioNumber": "# from twilio"
+             },
+        </pre>
+
+       <p>The first entry, Email, should be your email address or whatever email address you intend to
+       log in with the first time.  This email address will be made the default Admin!</p>
+
+       <h4>Setting up the database</h4>
+
+       <p>Notes 2017 uses two databases.  Starter databases have been provided in the DBs.zip file.  Copy
+       these four files into your SQL servers Data folder then attach the two databases.</p>
+       
+       <p>Open the appsetting.json file.  One line change the "DefaultConnection" and the
+       "SQLFileConnection" connection strings as appropriate for the server you are using.
+       Save the file.</p>
+
+       <h4>Create a login for yourself that will be the Admin</h4>
+       <p>
+           If you have done every thing correctly so far you are ready to start
+           the application and create the first login/account.  This should be the
+           email use set above as the "DefaultAdmin:Email".  Click the Register link and enter
+           the information requested.  After you have registered you should
+           receive an email with a link to click to confirm your email address.
+           Click it and then login.  Pour youself a cold one!
+       </p>
+
+       <h4>Creating NoteFiles</h4>
+       <p>
+           You are almost there.  The first order of business is to create some
+           NoteFiles.  Click on "NoteFile Manager" under the "Admin Options".
+           There are traditionally three starting NoteFiles on every Notes 2017
+           installation.
+           <ul>
+               <li>announce - "Notes Announcements" - the Admin make public announcements here</li>
+               <li>pbnotes - "Public Notes" - Open discussion for all</li>
+               <li>noteshelp - "Help for Notes Users" - Users go here to ask for help from the Admin or other users</li>
+           </ul>
+           Create those three files with those titles now.  Then create a file for your personal use.  Call it and title
+           it whatever you like.  You can create other NoteFiles for other purposes as you like.
+       </p>
+       <p>
+           By default Admins have full access to NoteFiles they create.  And everyone else "Other" has no access.
+           You will want to leave your personal file that way.
+           The next task is to set appropraite access for the other three files.
+           To set the access View the file.  In the upper right click on the "Access Controls" link.
+           For announce set "Other" to just "Read".  For the other two set access to "Read", "Write",
+           and "Respond".  That's it.  Announce, pbnotes, and noteshelp will have direct links
+           on the Home Page under "Important Files".  The complete list of files can be seen by
+           using the first link "NoteFile list" under "NoteFile Functions".
+       </p>
+
+       <h4>Exploring</h4>
+       <p>
+           Now you have the work done and you can start to explore.  You could register as another user
+           with a different email address (if you have moer than one) and that can be a non-Admin user.
+           After other users join they can each be given customized access to each NoteFile if appropriate.
+       </p>
+       <p>
+           NoteFiles are organized in threads or in traditional Notes lingo Note Strings.  The index listing
+           of the file has Base Notes which may have zero to many responses.  You first select a Base Note and
+           then you can navigate down through the responses. The ENTER key goes to the next response (if any) and if
+           there is no response the next Base Note.  SHIFT-ENTER skips any Responses and goes to the
+           next Base Note. E to edit a note.  D to Delete a Note.
+       </p>
+       <p>
+           Experiment with writing and reading notes and responses.  In most important pages you can press F1 for
+           keyboard short-cuts to perform actions. I metioned some of those in the previous paragraph.
+           Or just click on the links.  
+       </p>
+       <p>You and other users can Export an entire NoteFile as Html (with or without collapsing response panels), or
+       as plain text.  As an Admin you can Import the plain text files to another NoteFile even from another
+       installation.  Place the .txt file with the name of the notefile to be imported into into the
+       "ImportFile" folder.  Then use the Import link on the list of NoteFiles under "NoteFile Manager".
+       It may take awhile; just be patient.  I provided a file as an example
+       for experiment: "recipes.txt"  Just create NoteFile "recipes" and use Import.</p>
+
+       <h4>Telling people about your installation</h4>
+       <p>When you are comfortable that things are working ok and you are familar with Notes 2017
+        you can tell others about your installtion and invite them to join.</p>
+       <p>Please <a href="mailto:sinder@illinois.edu">drop me an email</a> and let me know you have an installation up or for questions</p>
+   </div>
+</div>

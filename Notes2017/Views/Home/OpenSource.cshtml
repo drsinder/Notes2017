@@ -1,0 +1,24 @@
+﻿@using Notes2017.ViewModels
+@{
+    ViewData["Title"] = "Open Source";
+}
+<div class="jumbotron">
+    <h2>Welcome to Notes 2017 <img src="~/favicon.ico" width="32" /></h2>
+    <h4>Today is @DateTime.Now.ToLongDateString(). - The Time is @DateTime.Now.ToShortTimeString(). @TZ.GetTimeZone(DateTime.Now)</h4>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            This is an open source project covered by the GNU General Public License
+            **  version 3 <a href="http://www.gnu.org/licenses/gpl-3.0.txt">http://www.gnu.org/licenses/gpl-3.0.txt</a>.  Source may be found in the
+            Visual Team Server location <a href="https://drsinder.visualstudio.com/Weather/_versionControl?path=%24%2FWeather%2FNotes2017&version=T&_a=contents">
+                https://drsinder.visualstudio.com/Weather/_versionControl?path=%24%2FWeather%2FNotes2017&version=T&_a=contents
+            </a>
+            To request access send email to <a href="mailto:sinder@illinois.edu">sinder@illinois.edu</a>
+        </h4>
+
+        <h4>Use the free Visual Studio 2017 and point the Team Explorer to: https://drsinder.visualstudio.com/Weather </h4>
+
+        <p>Please <a href="mailto:sinder@illinois.edu">drop me an email</a> and let me know you have an installation up or for questions</p>
+    </div>
+</div>

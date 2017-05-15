@@ -1,0 +1,63 @@
+@model IEnumerable<Notes2017.Models.TZone>
+
+@{
+    ViewData["Title"] = "Time Zones";
+}
+
+<h2>Time Zones</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TZoneID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abbreviation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Offset)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OffsetHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OffsetMinutes)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TZoneID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abbreviation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Offset)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OffsetHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OffsetMinutes)
+        </td>
+        <td>
+            <a asp-action="EditTZ" asp-route-id="@item.TZoneID">Edit</a>
+            @*<a asp-action="Details" asp-route-id="@item.TZoneID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.TZoneID">Delete</a>*@
+        </td>    
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

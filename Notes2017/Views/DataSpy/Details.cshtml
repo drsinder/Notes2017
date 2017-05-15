@@ -1,0 +1,41 @@
+@model Notes2017.Models.NoteFile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NoteFile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastEdited)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileID)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

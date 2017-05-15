@@ -1,0 +1,66 @@
+﻿@model Notes2017.Models.TZone
+
+@{
+    ViewData["Title"] = "Edit Time Zone";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="EditTZ">
+    <div class="form-horizontal">
+        <h4>Time Zone</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="TZoneID" />
+        <div class="form-group">
+            <label asp-for="Abbreviation" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Abbreviation" class="form-control" />
+                <span asp-validation-for="Abbreviation" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Offset" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Offset" class="form-control" />
+                <span asp-validation-for="Offset" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OffsetHours" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="OffsetHours" class="form-control" />
+                <span asp-validation-for="OffsetHours" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OffsetMinutes" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="OffsetMinutes" class="form-control" />
+                <span asp-validation-for="OffsetMinutes" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="TimeZones">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

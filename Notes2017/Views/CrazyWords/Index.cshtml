@@ -1,0 +1,71 @@
+﻿@using Notes2017.Models
+
+@model Notes2017.ViewModels.CrazyWords.NewWordViewModel
+
+@{
+    ViewData["Title"] = "Crazy Words";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h4>Make four letter words from the list below.</h4>
+       <strong>
+<pre class="large">
+@{ 
+int num = 0;
+for (int i = 0; i < 3; i++)
+{for (int k = 0; k < 5; k++){<span>&nbsp;&nbsp;</span>@Model.letterarray[num++];}if (i < 2){<br/>}}}
+</pre>
+        </strong>
+        <div class="keep-right"><a href="~/CrazyWords/HallOfFame/@Model.wordList">Hall Of Fame</a></div>
+
+        <form asp-controller="CrazyWords" asp-action="Index" method="post" class="form-horizontal" role="form">
+            @Html.HiddenFor( p => p.wordList)
+            @{Model.myWord.Word = ""; }
+            <div class="form-horizontal">
+                <hr />
+                            <div class="text-danger">@ViewData["Message"]</div>
+                New Word:
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input asp-for="myWord.Word" class="form-control" />
+                    </div>
+                    <script type="text/javascript">
+                        var mytextbox = document.getElementById('myWord_Word');
+                        document.onfocus = function () { mytextbox.value = ''; mytextbox.focus(); }
+                    </script>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Enter" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(p => p.MostRecentFirst) @Html.LabelFor(p => p.MostRecentFirst)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <p>Words = <label>@Model.myList.Count().ToString()</label></p>
+
+            @foreach (var x in Model.myList)
+            {
+                <label>@x.Word</label> <br />
+            }
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

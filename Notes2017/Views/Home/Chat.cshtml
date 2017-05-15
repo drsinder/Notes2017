@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Chat";
+}
+<h2>@ViewData["Title"] @*with @ViewData["ChatTo"]*@</h2>
+
+<ul id="discussion"></ul>
+<hr />
+
+<textarea id="message" style="width: 600px" rows="4" cols="50" >
+</textarea>
+<input type="button" id="chatsendmessage" value="Send" />
+<input type="hidden" id="displayname" value="@ViewData["ChatFrom"]" />
+<input type="hidden" id="displayname2" value="@ViewData["ChatTo"]" />

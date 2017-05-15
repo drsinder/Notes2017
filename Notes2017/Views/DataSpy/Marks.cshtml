@@ -1,0 +1,56 @@
+@model IEnumerable<Notes2017.Models.Mark>
+
+@{
+    ViewData["Title"] = "Marks";
+}
+
+<h2>Marks</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MarkOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseNoteHeaderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteOrdinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseOrdinal)
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MarkOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseNoteHeaderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteOrdinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseOrdinal)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

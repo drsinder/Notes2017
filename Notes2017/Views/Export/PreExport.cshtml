@@ -1,0 +1,47 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@model NFViewModel
+
+@{
+    ViewBag.Title = "Export";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        @if (User.IsInRole("User"))
+        {
+            <h3>Export NoteFile @Model.FileName</h3>
+            <form asp-controller="Export" asp-action="Index" method="post" class="form-horizontal" role="form">
+                <input asp-for="FileName" type="hidden" />
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isHtml" />
+                                <label asp-for="isHtml"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isCollapsible" />
+                                <label asp-for="isCollapsible"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*<input type="submit" value="Submit" />*@
+                            <button type="submit" class="btn btn-info btn-sm" tabindex="4">
+                                <span class="glyphicon glyphicon-download"></span> Export/Download
+                            </button>
+                            @Html.ActionLink("Back to NoteFile Index", "Index", "NoteDisplay" , new { id = Model.FileNum } )
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>

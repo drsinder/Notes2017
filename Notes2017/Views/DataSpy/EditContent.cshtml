@@ -1,0 +1,104 @@
+@model Notes2017.Models.NoteContent
+
+@{
+    ViewData["Title"] = "EditContent";
+}
+
+<h2>EditContent</h2>
+
+<form asp-action="EditContent">
+    <div class="form-horizontal">
+        <h4>NoteContent</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="NoteID" />
+        <input type="hidden" asp-for="AuthorID"  />
+        <input type="hidden" asp-for="AuthorName" />
+        <input type="hidden" asp-for="DirectorMesssage" />
+        <input type="hidden" asp-for="LastEdited"  />
+        <input type="hidden" asp-for="NoteFileID"  />
+        <input type="hidden" asp-for="NoteOrdinal" />
+        <input type="hidden" asp-for="ResponseOrdinal" />
+ 
+        <div class="form-group">
+            <label asp-for="NoteSubject" class="col-md-1 control-label"></label>
+            <div class="col-md-11">
+                <input asp-for="NoteSubject" class="form-control" />
+                <span asp-validation-for="NoteSubject" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NoteBody" class="col-md-1 control-label"></label>
+            <div class="col-md-11">
+                @Html.TextAreaFor(m => m.NoteBody, 20, 80, null)
+                @*<input asp-for="NoteBody" class="form-control" />*@
+                <span asp-validation-for="NoteBody" class="text-danger" />
+            </div>
+        </div>
+               
+        @*<div class="form-group">
+            <label asp-for="AuthorID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AuthorID" class="form-control" />
+                <span asp-validation-for="AuthorID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AuthorName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AuthorName" class="form-control" />
+                <span asp-validation-for="AuthorName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DirectorMesssage" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DirectorMesssage" class="form-control" />
+                <span asp-validation-for="DirectorMesssage" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastEdited" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastEdited" class="form-control" />
+                <span asp-validation-for="LastEdited" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NoteFileID" class="control-label col-md-2">NoteFileID</label>
+            <div class="col-md-10">
+                <select asp-for="NoteFileID" class="form-control" />
+                <span asp-validation-for="NoteFileID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NoteOrdinal" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NoteOrdinal" class="form-control" />
+                <span asp-validation-for="NoteOrdinal" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ResponseOrdinal" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ResponseOrdinal" class="form-control" />
+                <span asp-validation-for="ResponseOrdinal" class="text-danger" />
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

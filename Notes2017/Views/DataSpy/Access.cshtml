@@ -1,0 +1,78 @@
+@model IEnumerable<Notes2017.Models.NoteAccess>
+
+@{
+    ViewData["Title"] = "Access";
+}
+
+<h2>Access</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeleteEdit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditAccess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Read)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respond)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Write)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeleteEdit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditAccess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Read)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respond)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Write)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+</table>
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

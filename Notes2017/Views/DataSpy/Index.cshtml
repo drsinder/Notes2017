@@ -1,0 +1,49 @@
+@model IEnumerable<Notes2017.Models.NoteFile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileTitle)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.NoteFileID">Details</a> |
+            <a asp-action="Headers" asp-route-id="@item.NoteFileID">Headers</a> |
+            <a asp-action="Content" asp-route-id="@item.NoteFileID">Content</a> |
+            <a asp-action="Access" asp-route-id="@item.NoteFileID">Access</a>
+        </td>
+    </tr>
+}
+</table>
+<a asp-action="Marks">Marks</a> |
+<a asp-action="Search">Search</a> |
+<a asp-action="Sequencer">Sequencer</a> |
+<a asp-action="Words">Words</a> | 
+<a asp-action="TimeZones">Time Zones</a> |
+<a asp-action="Users">Users</a> |
+<a asp-action="Audit">Audit</a>  

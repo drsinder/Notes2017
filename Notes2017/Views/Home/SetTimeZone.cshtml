@@ -1,0 +1,51 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+
+@model TimeZoneModel
+
+@{
+    ViewData["Title"] = "Set Time Zone";
+}
+
+<h2>@ViewData["Title"].</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    <p>Current Time Zone: @Model.timeZone.Name - @Model.timeZone.Abbreviation - @Model.timeZone.Offset  <span id="digitalclock" class="keep-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+
+    @Html.HiddenFor(model => model.TimeZoneID)
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("OptionList")
+        </div>
+        <script type="text/javascript">
+            var myOption = document.getElementById('TimeZoneID');
+            var mydropdown = document.getElementById('OptionList');
+            document.onfocus = function () { mydropdown.focus(); }
+
+            mydropdown.onchange = function () {
+                myOption.value = this.value;
+            }
+        </script>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+<script>
+        setInterval(function () {
+            var time = new Date().toTimeString();
+            var split = time.split('(');
+            document.getElementById('digitalclock').innerHTML = 'Browser Time: ' + split[0];
+        }, 1000);
+
+</script>
