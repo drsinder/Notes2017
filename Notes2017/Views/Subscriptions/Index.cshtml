@@ -1,0 +1,43 @@
+@using Notes2017.Data
+@model IEnumerable<Notes2017.Models.Subscription>
+
+@{
+    ViewData["Title"] = "Subscription Index";
+    ApplicationDbContext Db = ViewBag.Db;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            NoteFile
+        </th>
+        <th>
+            Subscriber Name
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+
+    string file = Db.NoteFile.Single(p => p.NoteFileID == item.NoteFileID).NoteFileName;
+    string name = Db.Users.Single(p => p.Id == item.SubscriberID).UserName;
+    <tr>
+        <td>
+            @file
+        </td>
+        <td>
+            @name
+        </td>
+        <td>
+            @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,32 @@
+﻿@using Notes2017.App_Code 
+@model List<Notes2017.Models.SQLFile>
+@{ ViewData["Title"] = "Thumb Nails"; }
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        string url = "/File/GetById/" + item.FileId;
+        string show = url.Replace("~", Global.ProductionUrl);
+        string details = Global.ProductionUrl + "/SQLFiles/Details/" + item.FileId;
+       <tr>
+            <td>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a href="@details" ><img src=@url></a>
+                            <div class="caption">
+                                <h5>@show</h5>
+                                <h5>@item.FileName</h5>
+                                <p>@item.Comments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    }
+</table>

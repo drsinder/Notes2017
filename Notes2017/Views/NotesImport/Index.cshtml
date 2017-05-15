@@ -1,0 +1,40 @@
+﻿@model IEnumerable<NoteFile>
+
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.ActionLink("Import", "StartImport", new { id=item.NoteFileID }) 
+        </td>
+    </tr>
+}
+
+</table>

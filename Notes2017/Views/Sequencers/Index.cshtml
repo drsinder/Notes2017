@@ -1,0 +1,57 @@
+﻿@using Notes2017.Models
+@using Notes2017.Controllers
+@model IEnumerable<Sequencer>
+
+@{
+    ViewData["Title"] = "Index";
+    List<string> names = (List<string>)ViewData["Names"];
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordinal)
+        </th>
+        <td>
+            <strong> NoteFile Name </strong>        
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.LastTime)
+        </th>
+
+        <th></th>
+    </tr>
+
+@{ 
+    int cnt = 0;
+    foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordinal)
+        </td>
+        <td>
+            @names.ElementAt(cnt++)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastTime)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.UserID, id2 = item.NoteFileID }) | @Html.ActionLink("Edit", "Edit", new { id = item.UserID, id2 = item.NoteFileID })
+                @if (item.Ordinal > 1)
+                {<span> | </span>@Html.ActionLink("Move Up", "MoveUp", new { id = item.UserID, id2 = item.NoteFileID })}
+        @if (item.Ordinal < ViewBag.MaxOrdinal)
+                {<span> | </span>@Html.ActionLink("Move Down", "MoveDown", new { id = item.UserID, id2 = item.NoteFileID })}
+
+
+        </td>
+    </tr>
+        }
+}
+
+</table>

@@ -1,0 +1,44 @@
+@model IEnumerable<Notes2017.Models.SQLFile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Files Index</h2>
+
+<p>
+    <a asp-action="Create">Upload New</a>  |  <a asp-action="ThumbNails">See All Thumb Nails</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contributor)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contributor)
+        </td>
+        <td>
+            <a asp-action="Details" asp-route-id="@item.FileId">Details</a> |
+            <a asp-action="Edit" asp-route-id="@item.FileId">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.FileId">Delete</a>
+        </td>
+    </tr>
+}
+</table>

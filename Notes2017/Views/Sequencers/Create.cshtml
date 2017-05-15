@@ -1,0 +1,63 @@
+﻿@model Notes2017.ViewModels.NFViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Sequencer</h4>
+        <hr />
+        <div class="form-group">
+            <span class = "control-label col-md-2"><strong>NoteFile Name</strong></span>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } }) or
+               
+                @Html.DropDownList("AFiles", Model.AFiles, htmlAttributes: new { @class = "form-control short-input" }) or
+                @Html.DropDownList("ATitles", Model.ATitles, htmlAttributes: new { @class = "form-control short-input" })
+                <script type="text/javascript">
+                    var mytextbox = document.getElementById('FileName');
+                    var mydropdown = document.getElementById('AFiles');
+                    var mydropdown2 = document.getElementById('ATitles');
+
+                    document.onfocus = function () { mytextbox.focus(); }
+
+                    mydropdown.onchange = function () {
+                    mytextbox.value = this.value;
+                    mytextbox.focus();
+                    this.form.submit();
+                    }
+
+                    mydropdown2.onchange = function () {
+                        mytextbox.value = this.value;
+                        mytextbox.focus();
+                        this.form.submit();
+                    }
+
+                </script>
+
+
+                <script type="text/javascript">
+                    var mytextbox = document.getElementById('FileName');
+                    document.onfocus = function () { mytextbox.focus(); }
+                </script>
+                @*@Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

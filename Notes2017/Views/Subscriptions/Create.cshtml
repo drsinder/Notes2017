@@ -1,0 +1,60 @@
+@model Notes2017.Models.Subscription
+
+@{
+    IEnumerable<SelectListItem> FilesList = (IEnumerable<SelectListItem>)ViewBag.FilesList;
+    string UserID = ViewBag.UserID;
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create" >
+    <div class="form-horizontal">
+        <h4>Subscription</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="NoteFileID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @Html.DropDownList("AFiles", FilesList, htmlAttributes: new { @class = "short-input" })
+
+                <input asp-for="NoteFileID" class="form-control" />
+                <span asp-validation-for="NoteFileID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-2 control-label"></span>
+            <div class="col-md-10">
+                <input asp-for="SubscriberID" value=@UserID class="form-control" />
+                <span asp-validation-for="SubscriberID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var mytextbox = document.getElementById('NoteFileID');
+        var mytextbox2 = document.getElementById('SubscriberID');
+        var mydropdown = document.getElementById('AFiles');
+        mytextbox.style.visibility = "hidden";
+        mytextbox2.style.visibility = "hidden";
+        mydropdown.onchange = function () {
+        mytextbox.value = this.value;
+        mytextbox.focus();
+        }
+    </script>
+
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
