@@ -1,0 +1,85 @@
+﻿@model Notes2017.Models.Search
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.NoteFileID)
+        @Html.HiddenFor(model => model.BaseOrdinal)
+        @Html.HiddenFor(model => model.ResponseOrdinal)
+        @Html.HiddenFor(model => model.NoteID)
+
+        @Html.HiddenFor(model => model.Option)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Option, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("OptionList")
+                @*@Html.EnumDropDownListFor(model => model.Option, htmlAttributes: new { @class = "form-control" })*@
+                @*@Html.ValidationMessageFor(model => model.Option, "", new { @class = "text-danger" })*@
+            </div>
+            <script type="text/javascript">
+                var myOption = document.getElementById('Option');
+                var mydropdown = document.getElementById('OptionList');
+                document.onfocus = function () { mydropdown.focus(); }
+
+                mydropdown.onchange = function () {
+                    myOption.value = this.value;
+                    if(myOption.value == "4" || myOption.value == "5")
+                    {
+                        var txt = document.getElementById('Text');
+                        var tim = document.getElementById('Time');
+                        txt.style.visibility = "hidden";
+                        tim.style.visibility = "";
+                    }
+                    else
+                    {
+                        var txt = document.getElementById('Text');
+                        var tim = document.getElementById('Time');
+                        txt.style.visibility = "";
+                        tim.style.visibility = "hidden";
+                    }
+                }
+            </script>
+        </div>
+
+        <div class="form-group" id="TextGroup">
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="TimeGroup">
+            @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Search" class="btn btn-default" />*@
+                <button type="submit" class="btn btn-info btn-sm" tabindex="4">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button> 
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

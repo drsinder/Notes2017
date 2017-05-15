@@ -1,0 +1,193 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+
+@model  NoteDisplayIndexModel
+
+@{ 
+    ViewData["Title"] = @Model.noteFile.NoteFileName;
+}
+<script type="text/javascript" src="~/js/NoteIndex.js"></script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModal-label">Key board short cuts HELP</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b>L</b> - list of NoteFiles.<br/>
+                    <b>N</b> - write a new base note.<br />
+                    <b>S</b> - search options.<br />
+                    <b>H</b> - Show file as Html.<br />
+                    <b>h</b> - Show file as alternate Html.<br />
+                    <b>m</b> - mail NotesFile as Html.<br />
+                    <b>X</b> - Export the file.<br />
+                    <b>O</b> - Output Marked Notes.<br />
+                    <b>A</b> - edit the access controls.<br />
+                Click the <b>+</b> in front of notes with responses to see base note headers<br />
+                Click the <b>></b> in front of expanded base notes/responses to see contents.<br /><br />
+                In the brown input box:<br />
+                Type a number and press <b>RETURN/ENTER</b> to display that note number.<br />
+                You may go to a response by typing the <b>noteNumber.responseNumbe</b>r and pressing <b>RETURN/ENTER</b>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="text-center">@Html.Raw(@Model.noteFile.NoteFileName) - @Html.Raw(@Model.noteFile.NoteFileTitle)</h3>
+<h5>Last Edited - @Html.Raw((Model.tZone.Local(@Model.noteFile.LastEdited))) @Model.tZone.Abbreviation  <span class="keep-right">Base Notes - @Html.Raw(@Model.noteFile.BaseNoteHeaders.Count())&nbsp;&nbsp;&nbsp;&nbsp;</span></h5>
+
+<p class="notesmenu">
+@Html.ActionLink("List NoteFiles", "Index", "NoteFileList", null, new { id="toIndex", title="Goto the List of all notefiles" })
+@if (@Model.myAccess.Write)
+{<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("New Base Note", "Create", new { id = @Model.noteFile.NoteFileID }, new { id = "toWrite", title="Create a New base note" })}
+@if (@Model.myAccess.Read) {
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("eXport", "Export", new { id = @Model.noteFile.NoteFileID }, new { id = "toExport", title="Download/eXport the entire notefile" })
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = @Model.noteFile.NoteFileID, id2 = 0 }, new { id = "asHtml", title="See file as expandable Html", target="_blank" })
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = @Model.noteFile.NoteFileID, id2 = 0 }, new { id = "asHtmlAlt", title = "See file as flat Html", target = "_blank" })
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("mail", "MailFileAsHtml", new { id = @Model.noteFile.NoteFileID, id2 = 0 }, new { id = "toMail", title = "Mail file as expandable Html" })
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Search", "SearchFromIndex", new { id = @Model.noteFile.NoteFileID }, new { id = "toSearch", title = "Search for a note" })
+    if (@Model.isMarked)
+    {
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Output Marked", "ExportMarked", "Export", new { id = @Model.noteFile.NoteFileID }, new { id = "toXMarked", title = "Output the marked notes" }) }
+}
+
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>Press F1 for HELP.</strong>
+
+@if(@Model.myAccess.EditAccess)
+{
+    <span class="keep-right">@Html.ActionLink("Access Controls", "Index", "NoteAccesses", new { id = @Model.noteFile.NoteFileID }, new { id = "toAccess", title = "Edit the Access control list" })</span>
+}
+</p>
+<table class="table">
+    <tr>
+        <th>+</th>
+        <th>#</th>
+        <th>
+            Date/Time
+        </th>
+        <th>Writer</th>
+        <th>Subject</th>
+        <th>Responses</th>
+        <th></th>
+    </tr>
+@if (@Model.myAccess.Read)
+{
+    string path = Model.rPath;
+    string ancEnd = "</a>";
+    foreach (var item in Model.noteFile.BaseNoteHeaders)
+    {
+        string anc = "<a href=\"" + path + "/NoteDisplay/Display/" + item.NoteID + "\">";
+        string ancX = "<a href=\"" + path + "/NoteDisplay/Expand/" + item.NoteID + "\">";
+
+        @if (Model.ExpandOrdinal != item.NoteOrdinal)
+        {
+            <tr class="noteindex">
+                @if (item.Responses > 0)
+                {<td>@Html.Raw(ancX)+@Html.Raw(ancEnd)</td> }
+                else {
+                <td></td>}
+                <td>@Html.Raw(anc)@Html.DisplayFor(modelItem => item.NoteOrdinal)@Html.Raw(ancEnd)</td>
+                @*<td>@Html.Raw(anc)@Html.DisplayFor(modelItem => item.CreateDate) @Html.Raw(ancEnd)</td>*@
+                <td>@Html.Raw(anc)@Html.Raw((@Model.tZone.Local(item.CreateDate))) @Model.tZone.Abbreviation@Html.Raw(ancEnd)</td>
+                <td>@Html.Raw(anc)@Html.DisplayFor(modelItem => item.AuthorName)@Html.Raw(ancEnd)</td>
+                <td>@Html.Raw(anc)@Html.Raw(item.NoteSubject)</td>
+
+                @if (item.Responses > 0)
+                {<td>@Html.Raw(anc)@Html.DisplayFor(modelItem => item.Responses)@Html.Raw(ancEnd)</td>}
+                else
+                {<td></td>}
+               <td>
+               @Html.ActionLink("View", "Display", new { id = item.NoteID })
+               </td>
+            </tr>
+        }
+        else  // expanded base note
+        {
+            <tr><td><span id="expanded"></span></td></tr>
+            var ch = Model.Cheaders.GetEnumerator();
+            var lh = Model.Lheaders.GetEnumerator();
+            foreach (var note in Model.Notes)
+            {
+                anc = "<a href=\"" + path + "/NoteDisplay/Display/" + note.NoteID + "\">";
+                ch.MoveNext();
+                lh.MoveNext();
+                string panelStart = ch.Current;
+                string linky = lh.Current;
+                <tr class="expanded">
+                    <td><style id="expanded"></style>@Html.Raw(linky)</td>
+                    <td>@Html.Raw(anc)@Html.DisplayFor(modelItem => note.NoteOrdinal).@Html.DisplayFor(modelItem => note.ResponseOrdinal)@Html.Raw(ancEnd)</td>
+                    @*<td>@Html.Raw(anc)@Html.DisplayFor(modelItem => note.LastEdited) @Html.Raw(ancEnd)</td>*@
+                    <td>@Html.Raw(anc)@Html.Raw((@Model.tZone.Local(note.LastEdited))) @Model.tZone.Abbreviation @Html.Raw(ancEnd)</td>
+                    <td>@Html.Raw(anc)@Html.DisplayFor(modelItem => note.AuthorName)@Html.Raw(ancEnd)</td>
+                    <td>@Html.Raw(anc)@Html.Raw(note.NoteSubject)</td>
+                    <td></td>
+                    <td>
+                        @Html.ActionLink("View", "Display", new { id = item.NoteID })
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="6">
+                       @Html.Raw(panelStart)
+                       <div class="response-note">
+                           @Html.Raw(note.NoteBody)
+                       </div>
+                       @Html.Raw(@Model.panelEnd)
+                    </td>
+                </tr>
+            }
+        }
+    }
+}
+</table>
+@if (!@Model.myAccess.Read)
+{
+    <h3>You may not read this file.</h3>
+}
+
+
+<p class="notesmenu">
+    @Html.ActionLink("List NoteFiles", "Index", "NoteFileList", null)
+    @if (@Model.myAccess.Write)
+    {<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("New Base Note", "Create", new { id = @Model.noteFile.NoteFileID })}
+    @if (Model.myAccess.Read)
+    {<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("eXport", "Export", new { id = @Model.noteFile.NoteFileID })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = @Model.noteFile.NoteFileID, id2 = 0 })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = @Model.noteFile.NoteFileID, id2 = 0 })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("mail", "MailFileAsHtml", new { id = @Model.noteFile.NoteFileID, id2 = 0 })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Search", "SearchFromIndex", new { id = @Model.noteFile.NoteFileID })
+        if (Model.isMarked)
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Output Marked", "ExportMarked", "Export", new { id = @Model.noteFile.NoteFileID }) }
+    }
+
+    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Press F1 for HELP.</strong>
+
+    @if (Model.myAccess.EditAccess)
+    {
+        <span class="keep-right">@Html.ActionLink("Access Controls", "Index", "NoteAccesses", new { id = @Model.noteFile.NoteFileID })</span>
+    }
+ </p>
+
+    <div class="arrow1">
+        @using (Html.BeginForm("TypedInputIndex", "NoteDisplay", new { id = "typedInput" }, FormMethod.Post, null, null))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions">
+                <input type="text" id="fileID" name="fileid" value=@Model.noteFile.NoteFileID hidden />
+                <input type="text" id="typedInput" name="typedInput" autofocus autocomplete="off" style="width: 80px" />
+                <input type="submit" value="Navigate" class="btn btn-default" /> b# | b#.r#
+            </div>
+        }
+    </div>
+
+    <script type="text/javascript">
+        var element = document.getElementById("expanded");
+        element.scrollIntoView();
+    </script>

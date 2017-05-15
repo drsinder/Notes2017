@@ -1,0 +1,88 @@
+﻿@model IEnumerable<NoteAccess>
+
+@{
+    ViewBag.Title = "Access List ";
+    NoteAccess myaccess = ViewBag.MyAccess;
+    List<string> IDs = (List<string>)(ViewBag.IDs); // 2 long
+}
+
+<h2>Access List for @ViewBag.NoteFileName</h2>
+<p>
+    @if (myaccess.EditAccess) {@Html.ActionLink("Add", "Create", new { id = ViewBag.NoteFileID })}
+</p>
+<table class="table">
+    <tr>
+        <th>User Name</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Read)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respond)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Write)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetTag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeleteEdit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditAccess)
+        </th>
+        <th></th>
+    </tr>
+
+@{ 
+    int cnt = 0;
+    foreach (var item in Model)
+    {
+    <tr>
+        @{
+            string myname = ViewBag.names[cnt++];
+        <td>
+            @myname
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Read)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respond)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Write)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetTag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeleteEdit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditAccess)
+        </td>
+        <td>
+            @if (myaccess.EditAccess)
+            {@Html.ActionLink("Edit", "Edit", new { id = item.UserID, id2 = item.NoteFileID }) 
+                if (string.Compare(IDs[0], item.UserID) != 0 && string.Compare(IDs[1], item.UserID) != 0)
+                { <span>|</span> @Html.ActionLink("Delete", "Delete", new { id = item.UserID, id2 = item.NoteFileID }) }
+            }
+        </td>
+        }
+    </tr>
+                }
+
+            }
+
+</table>
+@Html.ActionLink("Back to file", "Index", "NoteDisplay", new { id = @ViewBag.NoteFileID }, null)
+
+

@@ -1,0 +1,58 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@model NFViewModel
+
+@{
+    ViewBag.Title = "Export";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        @if (User.IsInRole("User"))
+        {
+            <h3>Export @Model.FileName</h3>
+            <form asp-controller="Export" asp-action="Index" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    @Html.HiddenFor(p => p.FileName)
+                      @*<input asp-for="FileName" class="form-control short-input" hidden="hidden" />*@
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isHtml" />
+                                <label asp-for="isHtml"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="isCollapsible" />
+                                <label asp-for="isCollapsible"></label>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <input asp-for="directOutput" />
+                                <label asp-for="directOutput"></label>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @*<button type="submit" class="btn btn-default">Export</button>*@
+
+                        <button type="submit" class="btn btn-info btn-sm" tabindex="4">
+                            <span class="glyphicon glyphicon gglyphicon-download"></span> Export/Download
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>

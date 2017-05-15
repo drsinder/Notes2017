@@ -1,0 +1,205 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@using Microsoft.AspNetCore.Http
+@model NoteXModel
+@{ 
+    BaseNoteHeader baseNoteHeader = Model.bnh;
+    NoteFile noteFile = Model.note.NoteFile;
+    ViewData["Title"] = noteFile.NoteFileName;
+    NoteAccess MyAccess = Model.myAccess;
+    Int64 baseNoteHeaderID = Model.bnh.BaseNoteHeaderID;
+    bool CanDelete = Model.CanDelete;
+    bool IsSeq = Model.IsSeq;
+    string MarkLink = "<a href=\"/NoteDisplay/Mark/" + Model.note.NoteID +  "\"target=\"_blank\" id=\"toMark\" title=\"Mark a note for later output\" >Mark</a>";
+    string Resp = " ";
+    if (Model.note.ResponseOrdinal > 0)
+    { Resp = " - Response " + Model.note.ResponseOrdinal + " of " + baseNoteHeader.Responses; }
+    else if (baseNoteHeader.Responses > 0)
+    { Resp = " - " + baseNoteHeader.Responses + " Responses "; }
+    bool hidemenu = (bool)ViewBag.HideNoteMenu;
+}
+<script type="text/javascript" src="~/js/Display.js"></script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModal-label">Key board short cuts HELP</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b>I</b> - returns you to the index of the NoteFile which lists the base notes.<br />
+                    <b>SHIFT-RETURN/ENTER</b> - takes you to the next base note in the current NoteFile.<br />
+                    <b>SHIFT-F8</b> - takes you to the previous base note in the current NoteFile.<br />
+                    <b>/</b> - takes you to the next response, if any, or base note in the current NoteFile.<br />
+                    <b>F8</b> - takes you to the previous response if any or base note base note in the current NoteFile.<br />
+                    <b>F</b> - Forward a note by email.<br />
+                    <b>C</b> - Copy to another file.<br />
+                    <b>m</b> - mail note string.<br />
+                    <b>M</b>- Mark a note for later output.<br />
+                    <b>H</b> - Show note string as expandable Html.<br />
+                    <b>h</b> - Show note string as Html.<br />
+                    <b>S</b> - Start a Search<br />
+                    <b>N</b> - write a response. This option may not appear if you do not have permission to write notes.<br />
+                    <b>E</b> - Edit the note/response (if permitted)<br />
+                    <b>D</b> - Delete the note/response (if permitted)<br />
+                    <b>SPACE-BAR</b> - continue sequencing.<br />
+                    <b>SHIFT-SPACE-BAR</b> - continue searching.<br /><br />
+                    In the green input box:<br />
+                    <b>Type a number and press RETURN/ENTER</b> to display that note number.<br />
+                    You may go to a response by typing the <b>noteNumber.responseNumber</b> and pressing <b>RETURN/ENTER</b>.<br />
+                    Type <b>+</b> or <b>-</b> then a number and press <b>RETURN/ENTER</b> to go forward or backward that many base notes.<br />
+                    Type <b>+</b> or <b>-</b> then <b>.</b> then a number and press <b>RETURN/ENTER</b> to go forward or backward that many responses.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <br />
+    <h4 class="text-center">@Html.Raw(noteFile.NoteFileTitle)</h4>
+    <hr id="premenu"/>
+    <p id="notemenu" class="notesmenu" >
+        @Html.ActionLink("Index", "Index", new { id = Model.note.NoteFileID }, new { id = "toIndex", title="Goto the Index of this notefile" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Next Base", "NextBase", new { id = Model.note.NoteID }, new { id = "toNextBase", title = "Goto the next base note" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Previous Base", "PrevBase", new { id = Model.note.NoteID }, new { id = "toPrevBase", title = "Goto the previous base note" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Next", "NextNote", new { id = Model.note.NoteID }, new { id = "toNextNote", title = "Goto the next response or base note" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Previous", "PrevNote", new { id = Model.note.NoteID }, new { id = "toPrevNote", title = "Goto the previous response or base note" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Forward", "Forward", new { id = Model.note.NoteID }, new { id = "toForward", title = "Forward this note as email" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Copy", "Copy", new { id = Model.note.NoteID }, new { id = "toCopy", title = "Copy this note to another file" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("mail", "MailStringAsHtml", new { id = Model.note.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "toMail", title = "mail this string as Html" })
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(MarkLink)
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "asHtml", title = "Show this string as expandable Html", target="_blank" })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "asHtmlAlt", title = "Show this string as flat Html", target = "_blank" })
+
+        @if (MyAccess.Write || MyAccess.Respond)
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderID }, new { id = "toNewResponse", title = "Write a New response" })
+        }
+        @if (CanDelete)
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Edit", "Edit", new { id = Model.note.NoteID }, new { id = "toEdit", title = "Edit this note" })
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Delete", "Delete", new { id = Model.note.NoteID }, new { id = "toDelete", title = "Delete this note" })
+        }
+        @if (Context.Session.GetInt32("IsSearch") == 0)
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Search", "Search", new { id = Model.note.NoteID }, new { id = "toSearch", title = "Search this file" })
+        }
+        else
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Continue Search", "ContinueSearch", new { id = Model.note.NoteID }, new { id = "continueSearch", title = "Continue the search" })
+        }
+    </p>
+    <p>
+        <span class="keep-right">Note: @Model.note.NoteOrdinal  @Resp&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+        @if (IsSeq)
+        {
+            @*<br />*@
+            <span class="keep-right">
+                <span class="keep-right">Press F1 for HELP&nbsp;&nbsp;&nbsp;</span>
+                @Html.ActionLink("Sequence", "ContinueSequence", new { id = Model.note.NoteID }, new { id = "toSequence", title = "Continue sequencing" }) &nbsp;&nbsp;&nbsp;
+            </span>
+        }
+        else
+        {
+            <span class="keep-right">Press F1 for HELP&nbsp;&nbsp;&nbsp;</span>
+        }
+    </p>
+
+    @*<hr id="postmenu" />*@
+    <div class="noteheader">
+        @if (Model.note.ResponseOrdinal > 0)
+        {
+            <h4>
+                Base Note Subject: @Html.Raw(baseNoteHeader.NoteSubject) 
+            </h4>
+            <h4>Subject: @Html.Raw(Model.note.NoteSubject) <br />
+
+            Author: @Model.note.AuthorName &nbsp;&nbsp;&nbsp;@(Model.tZone.Local(Model.note.LastEdited).ToLongDateString()) @(Model.tZone.Local(Model.note.LastEdited).ToShortTimeString()) @Model.tZone.Abbreviation
+        </h4>
+        }
+        else
+        {
+        <h4>Subject: @Html.Raw(Model.note.NoteSubject) <br />
+            Author: @Model.note.AuthorName &nbsp;&nbsp;&nbsp;@(Model.tZone.Local(Model.note.LastEdited).ToLongDateString()) @(Model.tZone.Local(Model.note.LastEdited).ToShortTimeString()) @Model.tZone.Abbreviation
+        </h4>   
+        }
+        @if (!string.IsNullOrEmpty(@Model.note.DirectorMesssage))
+        {
+            <p><strong>Tag Line: @Html.Raw(@Model.note.DirectorMesssage)</strong> </p>
+        }
+    </div>
+    @*<hr />*@
+    <div class="notebody">
+        @Html.Raw(Model.note.NoteBody)
+    </div>
+</div>
+@*<hr />*@ 
+<p class="notesmenu">
+    @Html.ActionLink("Index", "Index", new { id = Model.note.NoteFileID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Next Base", "NextBase", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Previous Base", "PrevBase", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Next", "NextNote", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Previous", "PrevNote", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Forward", "Forward", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Copy", "Copy", new { id = Model.note.NoteID })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("mail", "MailStringAsHtml", new { id = Model.note.NoteFileID, id2 = Model.note.NoteOrdinal })
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(MarkLink)
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal })
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal })
+    @if (MyAccess.Write || MyAccess.Respond)
+    {
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderID })
+    }
+    @if (CanDelete)
+    {
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Edit", "Edit", new { id = Model.note.NoteID })<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Delete", "Delete", new { id = Model.note.NoteID })
+    }
+
+@if (Context.Session.GetInt32("IsSearch")== 0)
+{
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Search", "Search", new { id = Model.note.NoteID }, new { id = "toSearch" })
+    }
+    else
+    {
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Continue Search", "ContinueSearch", new { id = Model.note.NoteID }, new { id = "continueSearch" })
+    }
+
+    @if (IsSeq)
+    {
+            <span class="keep-right">
+                @Html.ActionLink("Sequence", "ContinueSequence", new { id = Model.note.NoteID })
+            </span>
+    }
+</p>
+<div class="arrow2">
+    @using (Html.BeginForm("TypedInputDisplay", "NoteDisplay", new { id = "typedInput" }, FormMethod.Post, null, null))
+    {
+        @Html.AntiForgeryToken()
+        string curN = "" + Model.note.NoteOrdinal;
+        if(Model.note.ResponseOrdinal > 0) { curN += "." + Model.note.ResponseOrdinal; }
+        <div class="form-actions">
+            <input type="text" id="fileID" name="fileid" value=@Model.note.NoteFileID hidden />
+            <input type="text" id="noteord" name="noteord" value=@Model.note.NoteOrdinal hidden />
+            <input type="text" id="respord" name="respord" value=@Model.note.ResponseOrdinal hidden />
+            <input type="text" id="noteid" name="noteid" value=@Model.note.NoteID hidden />
+            <input type="text" id="typedInput" name="typedInput" autofocus autocomplete="off" style="width: 80px"/> #= <strong>@curN</strong>
+            <br /><input type="submit" value="Navigate" class="btn btn-default" /> b#.r#&nbsp;&nbsp;|&nbsp;&nbsp;(+/-)b#&nbsp;&nbsp;|&nbsp;&nbsp;(+/-).r#
+        </div>
+    }
+</div>
+
+
+@if (hidemenu)
+{
+<script>
+    document.getElementById("premenu").style.visibility = "hidden";
+    document.getElementById("notemenu").style.visibility = "hidden";
+</script>
+}

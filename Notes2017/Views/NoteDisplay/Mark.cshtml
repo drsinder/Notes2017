@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using Notes2017.ViewModels
+@model MarkView
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Mark";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <h3>Mark Note For Output</h3>
+            <form asp-controller="NoteDisplay" asp-action="MarkProc" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    @Html.HiddenFor(p => p.NoteID)
+                    @Html.HiddenFor(p => p.SelectedValue)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.DropDownList("MarkOptions", Model.option)
+
+                            <script type="text/javascript">
+                                var mytextbox = document.getElementById('SelectedValue');
+                                var mydropdown = document.getElementById('MarkOptions');
+
+                                mydropdown.onchange = function () {
+                                mytextbox.value = this.value;
+                                //this.form.submit();
+                                }
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @*<button type="submit" class="btn btn-default">Mark</button>*@
+                        <button type="submit" class="btn btn-info btn-sm" tabindex="4">
+                            <span class="glyphicon glyphicon-flag"></span> Mark
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>

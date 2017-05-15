@@ -1,0 +1,38 @@
+@model IEnumerable<Notes2017.Models.HomePageMessage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Home Page Messages</h2>
+<p>Only the top message will be shown.</p>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posted)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @Html.Raw(item.Message)
+        </td>
+        <td>
+            @Html.Raw(item.Posted)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+</table>

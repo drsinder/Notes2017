@@ -1,0 +1,81 @@
+﻿@model NoteAccess
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<h3>NoteFile:  @ViewBag.NoteFileName  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User:  @ViewBag.NoteUserName</h3>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>NoteFile Access</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Read)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Read)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Respond)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Respond)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Write)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Write)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SetTag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SetTag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteEdit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeleteEdit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditAccess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditAccess)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index", new { id = Model.NoteFileID })
+        </div>
+    }
+</div>

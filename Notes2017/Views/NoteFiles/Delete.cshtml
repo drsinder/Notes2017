@@ -1,0 +1,49 @@
+﻿@using Notes2017.Models
+@model NoteFile
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>NoteFile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEdited)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

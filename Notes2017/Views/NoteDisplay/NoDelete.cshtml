@@ -1,0 +1,18 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+@model NoteXModel
+@{
+    ViewData["Title"] = "NoDelete";
+}
+
+<h2>Can Not Delete!</h2>
+
+<div> 
+    <h3>@Model.DeleteMessage </h3>
+    <p>Subject: @Html.Raw(@Model.note.NoteSubject)</p>
+    <p>Writer: @@Model.note.AuthorName</p>
+</div>
+<p>
+    @Html.ActionLink("Return", "Display", new { id = @Model.note.NoteID }) 
+
+</p>

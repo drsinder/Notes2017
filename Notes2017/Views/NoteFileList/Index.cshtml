@@ -1,0 +1,45 @@
+﻿@using Notes2017.Models
+@model IEnumerable<NoteFile>
+
+@{
+    ViewData["Title"] = "Index";
+    TZone tz = (TZone)ViewBag.TZ;
+}
+
+<h2>NoteFile List</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteFileTitle)
+        </td>
+        <td>
+            @tz.Local(item.LastEdited) @tz.Abbreviation
+        </td>
+        <td>
+            @Html.ActionLink("View", "Viewit", new { id = item.NoteFileID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NoteFileID }) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,111 @@
+﻿@using Notes2017.Models
+@using Notes2017.ViewModels
+
+@model TextViewModel
+
+@{
+    NoteFile noteFile = Model.noteFile;
+    bool isTinymce = ((bool)ViewData["isTinymce"]);
+
+    ViewData["Title"] = "Note Editor";
+}
+
+<h2>Note Editor - @if (noteFile != null){ @noteFile.NoteFileName <span>-</span> @noteFile.NoteFileTitle } </h2>
+
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea#MyNote",
+    theme: "modern",
+    autofocus: "textarea#MyNote",
+    browser_spellcheck : true,
+
+    width: 750,
+    height: 300,
+    max_width: 950,
+    max_height: 500,
+    resize: 'both',
+    plugins: [
+         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker fullscreen",
+         "searchreplace wordcount visualblocks visualchars code codesample insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons paste textcolor tabfocus"
+     ],
+//    content_css: "css/content.css",
+    relative_urls: false,
+    convert_urls: false,
+    contextmenu: "link image inserttable | cell row column deletetable",
+    toolbar: "insertfile undo redo | styleselect fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media codesample | print preview | nonbreaking forecolor backcolor emoticons insertdatetime fullscreen",
+   style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ]
+});
+
+
+window.onload = function () {
+    var txtBox = document.getElementById("MyNote");
+    if (txtBox != null) {
+        txtBox.focus();
+    }
+};
+
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <section id="testForm">
+            @using (Html.BeginForm("Create", "NoteDisplay", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(m => m.NoteFileID)
+                @Html.HiddenFor(m => m.BaseNoteHeaderID)
+                <hr />
+                @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        <strong>Subject</strong><br />
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.MySubject, new { @class = "form-control note-subject", @tabindex = "2" })
+                            @Html.ValidationMessageFor(m => m.MySubject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="form-group">
+                        <strong>Tag Line</strong><br />
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.TagLine, new { @class = "form-control note-subject", @tabindex = "3" })
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="form-group">
+                        <strong>Body</strong><br />
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(m => m.MyNote, new { @class = "form-control", @tabindex = "1"  })
+                            @Html.ValidationMessageFor(m => m.MyNote, "", new { @class = "text-danger" })
+                       </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-info btn-sm"  tabindex = "4">
+                                <span class="glyphicon glyphicon-save-file"></span> Save
+                            </button>
+                            | @Html.ActionLink("Cancel", "Index", new { id = Model.NoteFileID }, new { tabindex = "5" })
+                        </div>
+                    </div>
+                    @*<script type="text/javascript">
+		                var mytextbox = document.getElementById('MyBody');
+                        document.onfocus = function () { mytextbox.focus(); }
+                    </script>*@
+            }
+        </section>
+    </div>
+</div>
+
+

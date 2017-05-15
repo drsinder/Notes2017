@@ -1,0 +1,38 @@
+﻿@using Notes2017.ViewModels
+@model CopyView
+@{
+    ViewBag.Title = "Copy Note(s)";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<form asp-controller="NoteDisplay" asp-action="Copy" method="post" class="form-horizontal" role="form">
+    @Html.HiddenFor(model => model.NoteID)
+    @Html.HiddenFor(model => model.NoteSubject)
+    @Html.HiddenFor(model => model.Hasstring)
+
+    <h4>Subject: @Model.NoteSubject</h4>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="ToFile" class="col-md-4 control-label"></label>
+        <div class="col-md-8">
+            <input asp-for="ToFile" class="form-control short-input" autofocus />
+            <span asp-validation-for="ToFile" class="text-danger"></span>
+        </div>
+        <label asp-for="Wholestring" class="col-md-4 control-label"></label>
+        <div class="col-md-8">
+            <input asp-for="Wholestring" class="form-control short-input" />
+        </div>
+    </div>
+
+    <div class="form-actions no-color">
+        @*<input type="submit" value="Copy" class="btn btn-default" />*@ 
+        <button type="submit" class="btn btn-info btn-sm" tabindex="4">
+            <span class="glyphicon glyphicon glyphicon-share"></span> Copy
+        </button>
+        |
+        @Html.ActionLink("Back to Note", "Display", new { id = Model.NoteID })
+    </div>
+</form>

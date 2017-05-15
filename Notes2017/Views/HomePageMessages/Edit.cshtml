@@ -1,0 +1,99 @@
+@model Notes2017.Models.HomePageMessage
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea#Message",
+    theme: "modern",
+    autofocus: "textarea#Message",
+    browser_spellcheck : true,
+
+    width: 750,
+    height: 300,
+    max_width: 950,
+    max_height: 500,
+    resize: 'both',
+    plugins: [
+         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker fullscreen",
+         "searchreplace wordcount visualblocks visualchars code codesample insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons paste textcolor tabfocus"
+    ],
+    //setup: function (editor) {
+    //    editor.on('focus', function (e) {
+    //        var menubar = document.getElementById("menubar");
+    //        menubar.style.visibility = "hidden";
+    //    });
+
+    //    editor.on('blur', function (e) {
+    //        var menubar = document.getElementById("menubar");
+    //        menubar.style.visibility = "";
+    //    });
+    //},
+    content_css: "css/content.css",
+    relative_urls: false,
+    convert_urls: false,
+    contextmenu: "link image inserttable | cell row column deletetable",
+    toolbar: "insertfile undo redo | styleselect fontselect fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media codesample | print preview | nonbreaking forecolor backcolor emoticons insertdatetime fullscreen",
+    style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ]
+});
+
+window.onload = function () {
+    var txtBox = document.getElementById("Message");
+    if (txtBox != null) {
+        txtBox.focus();
+    }
+};
+</script>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Home Page Message</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Message" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @*<input asp-for="Message" class="form-control" />
+                <span asp-validation-for="Message" class="text-danger" />*@
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", @tabindex = "0", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Posted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Posted" class="form-control" value=@DateTime.Now />
+                <span asp-validation-for="Posted" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

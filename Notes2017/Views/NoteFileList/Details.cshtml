@@ -1,0 +1,48 @@
+﻿@using Notes2017.Models
+@model NoteFile
+
+@{
+    ViewBag.Title = "Details";
+    TZone tz = (TZone)ViewBag.TZ;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NoteFile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </dt>
+
+        <dd>
+            @tz.Local(Model.LastEdited) @tz.Abbreviation
+        </dd>
+        <dt>Base Notes</dt>
+        <dd>@ViewBag.BaseNotes</dd>
+        <dt>Responses</dt>
+        <dd>@(ViewBag.TotalNotes - @ViewBag.BaseNotes)</dd>
+        <dt>Total Notes</dt>
+        <dd>@ViewBag.TotalNotes</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

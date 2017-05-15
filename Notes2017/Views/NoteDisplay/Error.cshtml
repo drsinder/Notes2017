@@ -1,0 +1,21 @@
+﻿@using Microsoft.ApplicationInsights
+@using Notes2017.App_Code
+
+@{
+    ViewData["Title"] = "File Error";
+
+    TelemetryClient telemetry = new TelemetryClient();
+    telemetry.InstrumentationKey = Global.InstKey;
+    telemetry.TrackEvent("File Error: " + ViewBag.Message);
+}
+
+
+<h1 class="text-danger">File Error</h1>
+<h2 class="text-danger">@ViewBag.Message</h2>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

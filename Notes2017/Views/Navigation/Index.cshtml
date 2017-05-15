@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Navigation";
+}
+
+<h2>Navigation</h2>
+<div>
+    <p>
+        <a href="~/Navigation/Screens">First I highly recommend you look at some historical screens with a few notes to get some perspective.</a>
+    </p>
+</div>
+
+<div>
+    <p>Hopefully with the backround above you will be better prepared to tackle Notes 3 Navigation.  In many ways it is easier since navigation is by click or touch.</p>
+
+    <p>Here is an image of the navigatioon links at the top and bottom of each note.</p>
+
+    <img src="~/images/Notes2017Nav1.png" />
+
+    <ul>
+        <li>Index - returns you to the index of the NoteFile which lists the base notes.</li>
+        <li>Next Base - takes you to the next base note in the current NoteFile.</li>
+        <li>Previous Base - takes you to the previoous base note in the current NoteFile.</li>
+        <li>Next - takes you to the next response if any or base note base note in the current NoteFile.</li>
+        <li>Previous - takes you to the previous response if any or base note base note in the current NoteFile.</li>
+        <li>New Response - takes you to the notes editor to write a response. This option may not appear if you do not have permission to write notes.</li>
+        <li>Edit - Edit the note/resopnse (if permitted)</li>
+        <li>Delete - Delete the note/resopnse (if permitted)</li>
+    </ul>
+
+    <p>Keyboard short cuts: Press F1 to see the short cut keys for a given page.</p>
+       
+
+    <p>Other links that appear should be pretty obvious.</p>
+
+    <p>Notes about help using Notes 3 can be found in NoteFile <a href="~/NoteDisplay/Enter/noteshelp">noteshelp</a>.        
+     @*@Html.ActionLink("noteshelp", "Enter", "NoteDisplay", new { id  = "noteshelp" }, null)*@
+    </p>
+</div>
+

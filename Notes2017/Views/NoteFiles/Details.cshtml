@@ -1,0 +1,49 @@
+﻿@model NoteFile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NoteFile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteFileTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoteFileTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEdited)
+        </dd>
+        <dt>Base Notes</dt>
+        <dd>@ViewBag.BaseNotes</dd>
+        <dt>Responses</dt>
+        <dd>@(ViewBag.TotalNotes - @ViewBag.BaseNotes)</dd>
+        <dt>Total Notes</dt>
+        <dd>@ViewBag.TotalNotes</dd>
+        <dt>Total Length</dt>
+        <dd>@ViewBag.TotalLength Bytes</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NoteFileID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
