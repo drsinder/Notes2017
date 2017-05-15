@@ -1,0 +1,48 @@
+NoteFile noteshelp - Help with Notes 3.1 - Created Thursday, February 25, 2016 8:32 PM   For Dale_Sinder
+
+Note: 1 - Subject: Key board short cuts on NoteFile Index - Author: Dale_Sinder - 2/25/2016 6:01 PM - 0 Responses
+Tags - 
+
+<p>Press F1 to see this while viewing the Index.</p>
+<p><strong>L</strong> - <strong>list</strong> of NoteFiles.
+<strong>N</strong> - write a <strong>new</strong> base note.
+<strong>S</strong> - <strong>search</strong> options.
+<strong>H</strong> - Show file as <strong>Html</strong>.
+<strong>h</strong> - Show file as alternate <strong>Html</strong>.
+<strong>X</strong> - <strong>Export</strong> the file.
+<strong>O</strong> - <strong>Output</strong> Marked Notes.
+<strong>A</strong> - edit the <strong>access</strong> controls.</p>
+<p><strong>Click</strong> the <strong>+</strong> in front of notes with responses to see base note headers
+<strong>Click</strong> the <strong>&gt;</strong> in front of expanded base notes/responses to see contents.
+
+<strong>In the green input box:</strong>
+Type a<strong> number</strong> and press <strong>RETURN/ENTER</strong> to display that note number.
+You my go to a response by typing the <strong>noteNumber.responseNumber</strong> and pressing <strong>RETURN/ENTER</strong>.</p>
+
+
+Note: 2 - Subject: Key board short cuts while viewing a Note - Author: Dale_Sinder - 2/25/2016 6:06 PM - 0 Responses
+Tags - 
+
+<p>Press F1 to see this while viewing a note.</p>
+<p><strong>I</strong> - returns you to the <strong>index</strong> of the NoteFile which lists the base notes.
+<strong>SHIFT-RETURN/ENTER</strong> - takes you to the <strong>next base</strong> note in the current NoteFile.
+<strong>SHIFT-F8</strong> - takes you to the <strong>previous base</strong> note in the current NoteFile.
+<strong>/</strong> - takes you to the <strong>next response</strong>, if any, or base note in the current NoteFile.
+<strong>F8</strong> - takes you to the <strong>previous response</strong> if any or base note base note in the current NoteFile.
+<strong>F</strong> - <strong>Forward</strong> a note by email.
+<strong>M</strong>- <strong>Mark</strong> a note for later output.
+<strong>H</strong> - Show note string as expandable <strong>Html</strong>.
+<strong>h</strong> - Show note string as <strong>Html</strong>.
+<strong>S</strong> - Start a <strong>Search</strong>
+<strong>N</strong> - write a <strong>new response</strong>. This option may not appear if you do not have permission to write notes.
+<strong>E</strong> - Edit the note/response (if permitted)
+<strong>D</strong> - Delete the note/resopnse (if permitted)
+<strong>SPACE-BAR</strong> - <strong>continue sequencing</strong>.
+<strong>SHIFT-SPACE-BAR</strong> - <strong>continue searching</strong>.</p>
+<p><strong>In the green input box:</strong>
+Type a <strong>number</strong> and press <strong>RETURN/ENTER</strong> to display that note number.
+You my go to a response by typing the <strong>noteNumber.responseNumber</strong> and pressing <strong>RETURN/ENTER</strong>.
+Type <strong>+</strong> or <strong>-</strong> then a <strong>number</strong> and press <strong>RETURN/ENTER</strong> to go forward or backward that many <strong>base notes</strong>.
+Type <strong>+</strong> or <strong>-</strong> then <strong>.</strong> then a <strong>number</strong> and press <strong>RETURN/ENTER</strong> to go forward or backward that many <strong>responses</strong>.</p>
+
+

@@ -1,0 +1,205 @@
+TZoneID	Abbreviation	Name	Offset	OffsetHours	OffsetMinutes
+13	GMT	Greenwich Mean Time	UTC+00	0	0
+14	WAKT	Wake Island Time	UTC+12	12	0
+15	CHAST	Chatham Standard Time	UTC+12:45	12	45
+16	NZDT	New Zealand Daylight Time	UTC+13	13	0
+17	PHOT	Phoenix Island Time	UTC+13	13	0
+18	TKT	Tokelau Time	UTC+13	13	0
+19	TOT	Tonga Time	UTC+13	13	0
+20	CHADT	Chatham Daylight Time	UTC+13:45	13	45
+21	LINT	Line Islands Time	UTC+14	14	0
+22	AZOST	Azores Standard Time	UTC-01	-1	0
+23	CVT	Cape Verde Time	UTC-01	-1	0
+24	EGT	Eastern Greenland Time	UTC-01	-1	0
+25	BRST	Brasilia Summer Time	UTC-02	-2	0
+26	FNT	Fernando de Noronha Time	UTC-02	-2	0
+27	GST	South Georgia and the South Sandwich Islands	UTC-02	-2	0
+28	PMDT	Saint Pierre and Miquelon Daylight time	UTC-02	-2	0
+29	UYST	Uruguay Summer Time	UTC-02	-2	0
+30	NDT	Newfoundland Daylight Time	UTC-02:30	-2	-30
+31	ADT	Atlantic Daylight Time	UTC-03	-3	0
+32	AMST	Amazon Summer Time (Brazil)[1]	UTC-03	-3	0
+33	ART	Argentina Time	UTC-03	-3	0
+34	BRT	Brasilia Time	UTC-03	-3	0
+35	TVT	Tuvalu Time	UTC+12	12	0
+36	PETT	Kamchatka Time	UTC+12	12	0
+37	NZST	New Zealand Standard Time	UTC+12	12	0
+38	MHT	Marshall Islands	UTC+12	12	0
+39	DDUT	Dumont d'Urville Time	UTC+10	10	0
+40	EST	Eastern Standard Time (Australia)	UTC+10	10	0
+41	PGT	Papua New Guinea Time	UTC+10	10	0
+42	VLAT	Vladivostok Time	UTC+10	10	0
+43	ACDT	Australian Central Daylight Savings Time	UTC+10:30	10	30
+44	CST	Central Summer Time (Australia)	UTC+10:30	10	30
+45	LHST	Lord Howe Standard Time	UTC+10:30	10	30
+46	AEDT	Australian Eastern Daylight Savings Time	UTC+11	11	0
+47	BST	Bougainville Standard Time[4]	UTC+11	11	0
+48	KOST	Kosrae Time	UTC+11	11	0
+49	CLST	Chile Summer Time	UTC-03	-3	0
+50	LHST	Lord Howe Summer Time	UTC+11	11	0
+51	NCT	New Caledonia Time	UTC+11	11	0
+52	PONT	Pohnpei Standard Time	UTC+11	11	0
+53	SAKT	Sakhalin Island time	UTC+11	11	0
+54	SBT	Solomon Islands Time	UTC+11	11	0
+55	SRET	Srednekolymsk Time	UTC+11	11	0
+56	VUT	Vanuatu Time	UTC+11	11	0
+57	NFT	Norfolk Time	UTC+11:00	11	0
+58	FJT	Fiji Time	UTC+12	12	0
+59	GILT	Gilbert Island Time	UTC+12	12	0
+60	MAGT	Magadan Time	UTC+12	12	0
+61	MIST	Macquarie Island Station Time	UTC+11	11	0
+62	CHUT	Chuuk Time	UTC+10	10	0
+63	FKST	Falkland Islands Standard Time	UTC-03	-3	0
+64	GFT	French Guiana Time	UTC-03	-3	0
+65	PET	Peru Time	UTC-05	-5	0
+66	CST	Central Standard Time (North America)	UTC-06	-6	0
+67	EAST	Easter Island Standard Time	UTC-06	-6	0
+68	GALT	Galapagos Time	UTC-06	-6	0
+69	MDT	Mountain Daylight Time (North America)	UTC-06	-6	0
+70	MST	Mountain Standard Time (North America)	UTC-07	-7	0
+71	PDT	Pacific Daylight Time (North America)	UTC-07	-7	0
+72	AKDT	Alaska Daylight Time	UTC-08	-8	0
+73	CIST	Clipperton Island Standard Time	UTC-08	-8	0
+74	PST	Pacific Standard Time (North America)	UTC-08	-8	0
+75	AKST	Alaska Standard Time	UTC-09	-9	0
+76	GAMT	Gambier Islands	UTC-09	-9	0
+77	GIT	Gambier Island Time	UTC-09	-9	0
+78	HADT	Hawaii-Aleutian Daylight Time	UTC-09	-9	0
+79	MART	Marquesas Islands Time	UTC-09:30	-9	-30
+80	MIT	Marquesas Islands Time	UTC-09:30	-9	-30
+81	CKT	Cook Island Time	UTC-10	-10	0
+82	HAST	Hawaii-Aleutian Standard Time	UTC-10	-10	0
+83	HST	Hawaii Standard Time	UTC-10	-10	0
+84	TAHT	Tahiti Time	UTC-10	-10	0
+85	NUT	Niue Time	UTC-11	-11	0
+86	EST	Eastern Standard Time (North America)	UTC-05	-5	0
+87	ECT	Ecuador Time	UTC-05	-5	0
+88	EASST	Easter Island Standard Summer Time	UTC-05	-5	0
+89	CST	Cuba Standard Time	UTC-05	-5	0
+90	PMST	Saint Pierre and Miquelon Standard Time	UTC-03	-3	0
+91	PYST	Paraguay Summer Time (South America)[8]	UTC-03	-3	0
+92	ROTT	Rothera Research Station Time	UTC-03	-3	0
+93	SRT	Suriname Time	UTC-03	-3	0
+94	UYT	Uruguay Standard Time	UTC-03	-3	0
+95	NST	Newfoundland Standard Time	UTC-03:30	-3	-30
+96	NT	Newfoundland Time	UTC-03:30	-3	-30
+97	AMT	Amazon Time (Brazil)[2]	UTC-04	-4	0
+98	AST	Atlantic Standard Time	UTC-04	-4	0
+99	BOT	Bolivia Time	UTC-04	-4	0
+100	FKST	Falkland Islands Summer Time	UTC-03	-3	0
+101	CDT	Cuba Daylight Time[5]	UTC-04	-4	0
+102	COST	Colombia Summer Time	UTC-04	-4	0
+103	ECT	Eastern Caribbean Time (does not recognise DST)	UTC-04	-4	0
+104	EDT	Eastern Daylight Time (North America)	UTC-04	-4	0
+105	FKT	Falkland Islands Time	UTC-04	-4	0
+106	GYT	Guyana Time	UTC-04	-4	0
+107	PYT	Paraguay Time (South America)[9]	UTC-04	-4	0
+108	VET	Venezuelan Standard Time	UTC-04:30	-4	-30
+109	ACT	Acre Time	UTC-05	-5	0
+110	CDT	Central Daylight Time (North America)	UTC-05	-5	0
+111	COT	Colombia Time	UTC-05	-5	0
+112	CLT	Chile Standard Time	UTC-04	-4	0
+113	ChST	Chamorro Standard Time	UTC+10	10	0
+114	AEST	Australian Eastern Standard Time	UTC+10	10	0
+115	CST	Central Standard Time (Australia)	UTC+09:30	9	30
+116	EEDT	Eastern European Daylight Time	UTC+03	3	0
+117	EEST	Eastern European Summer Time	UTC+03	3	0
+118	FET	Further-eastern European Time	UTC+03	3	0
+119	IDT	Israel Daylight Time	UTC+03	3	0
+120	IOT	Indian Ocean Time	UTC+03	3	0
+121	MSK	Moscow Time	UTC+03	3	0
+122	SYOT	Showa Station Time	UTC+03	3	0
+123	IRST	Iran Standard Time	UTC+03:30	3	30
+124	AMT	Armenia Time	UTC+04	4	0
+125	AZT	Azerbaijan Time	UTC+04	4	0
+126	GET	Georgia Standard Time	UTC+04	4	0
+127	GST	Gulf Standard Time	UTC+04	4	0
+128	MUT	Mauritius Time	UTC+04	4	0
+129	RET	R?union Time	UTC+04	4	0
+130	SAMT	Samara Time	UTC+04	4	0
+131	SCT	Seychelles Time	UTC+04	4	0
+132	VOLT	Volgograd Time	UTC+04	4	0
+133	AFT	Afghanistan Time	UTC+04:30	4	30
+134	IRDT	Iran Daylight Time	UTC+04:30	4	30
+135	HMT	Heard and McDonald Islands Time	UTC+05	5	0
+136	MAWT	Mawson Station Time	UTC+05	5	0
+137	EAT	East Africa Time	UTC+03	3	0
+138	AST	Arabia Standard Time	UTC+03	3	0
+139	WAST	West Africa Summer Time	UTC+02	2	0
+140	USZ1	Kaliningrad Time	UTC+02	2	0
+141	IBST	International Business Standard Time	UTC+00	0	0
+142	UCT	Coordinated Universal Time	UTC+00	0	0
+143	UTC	Coordinated Universal Time	UTC+00	0	0
+144	WET	Western European Time	UTC+00	0	0
+145	Z	Zulu Time (Coordinated Universal Time)	UTC+00	0	0
+146	EGST	Eastern Greenland Summer Time	UTC+00	0	0
+147	BST	British Summer Time (British Standard Time from Feb 1968 to Oct 1971)	UTC+01	1	0
+148	CET	Central European Time	UTC+01	1	0
+149	DFT	AIX specific equivalent of Central European Time[6]	UTC+01	1	0
+150	IST	Irish Standard Time[7]	UTC+01	1	0
+151	MVT	Maldives Time	UTC+05	5	0
+152	MET	Middle European Time Same zone as CET	UTC+01	1	0
+153	WEDT	Western European Daylight Time	UTC+01	1	0
+154	WEST	Western European Summer Time	UTC+01	1	0
+155	CAT	Central Africa Time	UTC+02	2	0
+156	CEDT	Central European Daylight Time	UTC+02	2	0
+157	CEST	Central European Summer Time (Cf. HAEC)	UTC+02	2	0
+158	EET	Eastern European Time	UTC+02	2	0
+159	HAEC	Heure Avanc?e d'Europe Centrale francised name for CEST	UTC+02	2	0
+160	IST	Israel Standard Time	UTC+02	2	0
+161	MEST	Middle European Summer Time Same zone as CEST	UTC+02	2	0
+162	SAST	South African Standard Time	UTC+02	2	0
+163	WAT	West Africa Time	UTC+01	1	0
+164	ORAT	Oral Time	UTC+05	5	0
+165	PKT	Pakistan Standard Time	UTC+05	5	0
+166	TFT	Indian/Kerguelen	UTC+05	5	0
+167	BDT	Brunei Time	UTC+08	8	0
+168	CHOT	Choibalsan	UTC+08	8	0
+169	CIT	Central Indonesia Time	UTC+08	8	0
+170	CST	China Standard Time	UTC+08	8	0
+171	CT	China time	UTC+08	8	0
+172	HKT	Hong Kong Time	UTC+08	8	0
+173	IRKT	Irkutsk Time	UTC+08	8	0
+174	MST	Malaysia Standard Time	UTC+08	8	0
+175	MYT	Malaysia Time	UTC+08	8	0
+176	PST	Philippine Standard Time	UTC+08	8	0
+177	AWST	Australian Western Standard Time	UTC+08	8	0
+178	SGT	Singapore Time	UTC+08	8	0
+179	ULAT	Ulaanbaatar Time	UTC+08	8	0
+180	WST	Western Standard Time	UTC+08	8	0
+181	CWST	Central Western Standard Time (Australia) unofficial	UTC+08:45	8	45
+182	AWDT	Australian Western Daylight Time	UTC+09	9	0
+183	EIT	Eastern Indonesian Time	UTC+09	9	0
+184	JST	Japan Standard Time	UTC+09	9	0
+185	KST	Korea Standard Time	UTC+09	9	0
+186	TLT	Timor Leste Time	UTC+09	9	0
+187	YAKT	Yakutsk Time	UTC+09	9	0
+188	ACST	Australian Central Standard Time	UTC+09:30	9	30
+189	SST	Singapore Standard Time	UTC+08	8	0
+190	SST	Samoa Standard Time	UTC-11	-11	0
+191	ACT	ASEAN Common Time	UTC+08	8	0
+192	THA	Thailand Standard Time	UTC+07	7	0
+193	TJT	Tajikistan Time	UTC+05	5	0
+194	TMT	Turkmenistan Time	UTC+05	5	0
+195	UZT	Uzbekistan Time	UTC+05	5	0
+196	YEKT	Yekaterinburg Time	UTC+05	5	0
+197	IST	Indian Standard Time	UTC+05:30	5	30
+198	SLST	Sri Lanka Standard Time	UTC+05:30	5	30
+199	NPT	Nepal Time	UTC+05:45	5	45
+200	BDT	Bangladesh Daylight Time (Bangladesh Daylight saving time keeps UTC+06 offset) [3]	UTC+06	6	0
+201	BIOT	British Indian Ocean Time	UTC+06	6	0
+202	BST	Bangladesh Standard Time	UTC+06	6	0
+203	WIT	Western Indonesian Time	UTC+07	7	0
+204	BTT	Bhutan Time	UTC+06	6	0
+205	OMST	Omsk Time	UTC+06	6	0
+206	VOST	Vostok Station Time	UTC+06	6	0
+207	CCT	Cocos Islands Time	UTC+06:30	6	30
+208	MMT	Myanmar Time	UTC+06:30	6	30
+209	MST	Myanmar Standard Time	UTC+06:30	6	30
+210	CXT	Christmas Island Time	UTC+07	7	0
+211	DAVT	Davis Time	UTC+07	7	0
+212	HOVT	Khovd Time	UTC+07	7	0
+213	ICT	Indochina Time	UTC+07	7	0
+214	KRAT	Krasnoyarsk Time	UTC+07	7	0
+215	KGT	Kyrgyzstan time	UTC+06	6	0
+216	BIT	Baker Island Time	UTC-12	-12	0
