@@ -49,13 +49,13 @@ textarea {
 }
 
 /* buttons and links extension to use brackets: [ click me ] */
-.btn-bracketed::before {
+.btn-bracketed:before {
     display: inline-block;
     content: "[";
     padding-right: 0.5em;
 }
 
-.btn-bracketed::after {
+.btn-bracketed:after {
     display: inline-block;
     content: "]";
     padding-left: 0.5em;
