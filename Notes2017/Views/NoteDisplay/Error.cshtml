@@ -1,12 +1,10 @@
-﻿@using Microsoft.ApplicationInsights
-@using Notes2017.App_Code
-
+﻿@*@using Microsoft.ApplicationInsights*@
 @{
     ViewData["Title"] = "File Error";
 
-    TelemetryClient telemetry = new TelemetryClient();
-    telemetry.InstrumentationKey = Global.InstKey;
-    telemetry.TrackEvent("File Error: " + ViewBag.Message);
+    //TelemetryClient telemetry = new TelemetryClient();
+    //telemetry.InstrumentationKey = Notes2017.App_Code.Global.InstKey;
+    //telemetry.TrackEvent("File Error: " + ViewBag.Message);
 }
 
 

@@ -1,5 +1,4 @@
-﻿@using Notes2017.Models
-@using Notes2017.ViewModels
+﻿@using Notes2017.ViewModels
 
 @model  NoteDisplayIndexModel
 
@@ -85,7 +84,7 @@
         string anc = "<a href=\"" + path + "/NoteDisplay/Display/" + item.NoteID + "\">";
         string ancX = "<a href=\"" + path + "/NoteDisplay/Expand/" + item.NoteID + "\">";
 
-        @if (Model.ExpandOrdinal != item.NoteOrdinal)
+        if (Model.ExpandOrdinal != item.NoteOrdinal)
         {
             <tr class="noteindex">
                 @if (item.Responses > 0)
@@ -142,6 +141,8 @@
                     </td>
                 </tr>
             }
+            ch.Dispose();
+            lh.Dispose();
         }
     }
 }

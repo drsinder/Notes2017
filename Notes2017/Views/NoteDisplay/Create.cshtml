@@ -1,14 +1,13 @@
-﻿@using Notes2017.Models
-@using Notes2017.ViewModels
+﻿@using Notes2017.ViewModels
 
 @model TextViewModel
 
 @{
     NoteFile noteFile = Model.noteFile;
-    bool isTinymce = ((bool)ViewData["isTinymce"]);
 
     ViewData["Title"] = "Note Editor";
 }
+<style type="text/css"></style>
 
 <h2>Note Editor - @if (noteFile != null){ @noteFile.NoteFileName <span>-</span> @noteFile.NoteFileTitle } </h2>
 
@@ -70,7 +69,7 @@ window.onload = function () {
                     <div class="form-group">
                         <strong>Subject</strong><br />
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.MySubject, new { @class = "form-control note-subject", @tabindex = "2" })
+                            @Html.TextBoxFor(m => m.MySubject, new { @class = "form-control", @tabindex = "2" })
                             @Html.ValidationMessageFor(m => m.MySubject, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -79,7 +78,7 @@ window.onload = function () {
                     <div class="form-group">
                         <strong>Tag Line</strong><br />
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.TagLine, new { @class = "form-control note-subject", @tabindex = "3" })
+                            @Html.TextBoxFor(m => m.TagLine, new { @class = "form-control", @tabindex = "3" })
                         </div>
                     </div>
                     <hr />

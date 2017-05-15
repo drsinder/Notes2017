@@ -1,21 +1,20 @@
-﻿@using Notes2017.Models
-@using Notes2017.ViewModels
+﻿@using Notes2017.ViewModels
 @using Microsoft.AspNetCore.Http
 @model NoteXModel
 @{ 
     BaseNoteHeader baseNoteHeader = Model.bnh;
     NoteFile noteFile = Model.note.NoteFile;
     ViewData["Title"] = noteFile.NoteFileName;
-    NoteAccess MyAccess = Model.myAccess;
-    Int64 baseNoteHeaderID = Model.bnh.BaseNoteHeaderID;
-    bool CanDelete = Model.CanDelete;
-    bool IsSeq = Model.IsSeq;
-    string MarkLink = "<a href=\"/NoteDisplay/Mark/" + Model.note.NoteID +  "\"target=\"_blank\" id=\"toMark\" title=\"Mark a note for later output\" >Mark</a>";
-    string Resp = " ";
+    NoteAccess myAccess = Model.myAccess;
+    Int64 baseNoteHeaderId = Model.bnh.BaseNoteHeaderID;
+    bool canDelete = Model.CanDelete;
+    bool isSeq = Model.IsSeq;
+    string markLink = "<a href=\"/NoteDisplay/Mark/" + Model.note.NoteID +  "\"target=\"_blank\" id=\"toMark\" title=\"Mark a note for later output\" >Mark</a>";
+    string resp = " ";
     if (Model.note.ResponseOrdinal > 0)
-    { Resp = " - Response " + Model.note.ResponseOrdinal + " of " + baseNoteHeader.Responses; }
+    { resp = " - Response " + Model.note.ResponseOrdinal + " of " + baseNoteHeader.Responses; }
     else if (baseNoteHeader.Responses > 0)
-    { Resp = " - " + baseNoteHeader.Responses + " Responses "; }
+    { resp = " - " + baseNoteHeader.Responses + " Responses "; }
     bool hidemenu = (bool)ViewBag.HideNoteMenu;
 }
 <script type="text/javascript" src="~/js/Display.js"></script>
@@ -73,15 +72,15 @@
         &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Forward", "Forward", new { id = Model.note.NoteID }, new { id = "toForward", title = "Forward this note as email" })
         &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Copy", "Copy", new { id = Model.note.NoteID }, new { id = "toCopy", title = "Copy this note to another file" })
         &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("mail", "MailStringAsHtml", new { id = Model.note.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "toMail", title = "mail this string as Html" })
-        &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(MarkLink)
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(markLink)
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "asHtml", title = "Show this string as expandable Html", target="_blank" })
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal }, new { id = "asHtmlAlt", title = "Show this string as flat Html", target = "_blank" })
 
-        @if (MyAccess.Write || MyAccess.Respond)
+        @if (myAccess.Write || myAccess.Respond)
         {
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderID }, new { id = "toNewResponse", title = "Write a New response" })
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderId }, new { id = "toNewResponse", title = "Write a New response" })
         }
-        @if (CanDelete)
+        @if (canDelete)
         {
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Edit", "Edit", new { id = Model.note.NoteID }, new { id = "toEdit", title = "Edit this note" })
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Delete", "Delete", new { id = Model.note.NoteID }, new { id = "toDelete", title = "Delete this note" })
@@ -96,9 +95,9 @@
         }
     </p>
     <p>
-        <span class="keep-right">Note: @Model.note.NoteOrdinal  @Resp&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="keep-right">Note: @Model.note.NoteOrdinal  @resp&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-        @if (IsSeq)
+        @if (isSeq)
         {
             @*<br />*@
             <span class="keep-right">
@@ -130,9 +129,9 @@
             Author: @Model.note.AuthorName &nbsp;&nbsp;&nbsp;@(Model.tZone.Local(Model.note.LastEdited).ToLongDateString()) @(Model.tZone.Local(Model.note.LastEdited).ToShortTimeString()) @Model.tZone.Abbreviation
         </h4>   
         }
-        @if (!string.IsNullOrEmpty(@Model.note.DirectorMesssage))
+        @if (!string.IsNullOrEmpty(Model.note.DirectorMesssage))
         {
-            <p><strong>Tag Line: @Html.Raw(@Model.note.DirectorMesssage)</strong> </p>
+            <p><strong>Tag Line: @Html.Raw(Model.note.DirectorMesssage)</strong> </p>
         }
     </div>
     @*<hr />*@
@@ -150,14 +149,14 @@
     &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Forward", "Forward", new { id = Model.note.NoteID })
     &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Copy", "Copy", new { id = Model.note.NoteID })
     &nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("mail", "MailStringAsHtml", new { id = Model.note.NoteFileID, id2 = Model.note.NoteOrdinal })
-    &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(MarkLink)
+    &nbsp;&nbsp;&nbsp;&nbsp;@Html.Raw(markLink)
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Html", "AsHtml", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal })
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("html", "AsHtmlAlt", new { id = noteFile.NoteFileID, id2 = Model.note.NoteOrdinal })
-    @if (MyAccess.Write || MyAccess.Respond)
+    @if (myAccess.Write || myAccess.Respond)
     {
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderID })
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> @Html.ActionLink("New Response", "CreateResponse", new { id = baseNoteHeaderId })
     }
-    @if (CanDelete)
+    @if (canDelete)
     {
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Edit", "Edit", new { id = Model.note.NoteID })<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>@Html.ActionLink("Delete", "Delete", new { id = Model.note.NoteID })
     }
@@ -171,7 +170,7 @@
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>  @Html.ActionLink("Continue Search", "ContinueSearch", new { id = Model.note.NoteID }, new { id = "continueSearch" })
     }
 
-    @if (IsSeq)
+    @if (isSeq)
     {
             <span class="keep-right">
                 @Html.ActionLink("Sequence", "ContinueSequence", new { id = Model.note.NoteID })
