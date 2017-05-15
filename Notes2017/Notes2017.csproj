@@ -1,0 +1,130 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <UserSecretsId>aspnet-Notes2017-66225d2a-8c9c-4847-88c4-98e16023b54d</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot/ImportFiles\drsn.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ImportFiles\drsn.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\ExportCSS\Customizable.css" />
+    <Content Include="wwwroot\css\ExportCSS\NotesExport31.css" />
+    <Content Include="wwwroot\favicon.ico" />
+    <Content Include="wwwroot\images\AccessOpts.png" />
+    <Content Include="wwwroot\images\AccesssEdit.png" />
+    <Content Include="wwwroot\images\Amode.PNG" />
+    <Content Include="wwwroot\images\BaseNote.PNG" />
+    <Content Include="wwwroot\images\Clipboard.png" />
+    <Content Include="wwwroot\images\clockface.jpg" />
+    <Content Include="wwwroot\images\CNIndex.PNG" />
+    <Content Include="wwwroot\images\DirOptIndex.png" />
+    <Content Include="wwwroot\images\FileTables.PNG" />
+    <Content Include="wwwroot\images\HangfireTables.PNG" />
+    <Content Include="wwwroot\images\hourhand.png" />
+    <Content Include="wwwroot\images\IdentTables.PNG" />
+    <Content Include="wwwroot\images\Login1.PNG" />
+    <Content Include="wwwroot\images\Login2.PNG" />
+    <Content Include="wwwroot\images\Login3.PNG" />
+    <Content Include="wwwroot\images\minhand.png" />
+    <Content Include="wwwroot\images\NextToBegin.PNG" />
+    <Content Include="wwwroot\images\Note.png" />
+    <Content Include="wwwroot\images\NoteHelp1.png" />
+    <Content Include="wwwroot\images\NoteHelp2.png" />
+    <Content Include="wwwroot\images\NoteHelp3.png" />
+    <Content Include="wwwroot\images\Notes3Nav1.PNG" />
+    <Content Include="wwwroot\images\NotesHelp1.png" />
+    <Content Include="wwwroot\images\NotesHelp2.png" />
+    <Content Include="wwwroot\images\NotesHelp3.png" />
+    <Content Include="wwwroot\images\NotesIndex.png" />
+    <Content Include="wwwroot\images\NotesMain.png" />
+    <Content Include="wwwroot\images\NotesSEQU.png" />
+    <Content Include="wwwroot\images\NotesSEQUByPass.png" />
+    <Content Include="wwwroot\images\NotFound.png" />
+    <Content Include="wwwroot\images\PadIndex.PNG" />
+    <Content Include="wwwroot\images\ResponseNote.PNG" />
+    <Content Include="wwwroot\images\sechand.png" />
+    <Content Include="wwwroot\images\UserTables.PNG" />
+    <Content Include="wwwroot\js\clipboard.js" />
+    <Content Include="wwwroot\js\clipboard.min.js" />
+    <Content Include="wwwroot\js\Display.js" />
+    <Content Include="wwwroot\js\NoteIndex.js" />
+    <Content Include="wwwroot\js\prism.js" />
+    <Content Include="wwwroot\js\prism.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.4.0" />
+    <PackageReference Include="Hangfire" Version="1.6.11" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="PusherServer" Version="3.0.0" />
+    <PackageReference Include="SendGrid" Version="9.0.12" />
+    <PackageReference Include="Twilio" Version="5.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\ImportFiles\drsn.txt" />
+    <None Include="wwwroot\ImportFiles\noteshelp.txt" />
+    <None Include="wwwroot\ImportFiles\onotes74A.TXT" />
+    <None Include="wwwroot\ImportFiles\onotes74B.txt" />
+    <None Include="wwwroot\ImportFiles\onotes75A.txt" />
+    <None Include="wwwroot\ImportFiles\onotes75B.txt" />
+    <None Include="wwwroot\ImportFiles\onotes75C.txt" />
+    <None Include="wwwroot\ImportFiles\pad.txt" />
+    <None Include="wwwroot\ImportFiles\padofold.txt" />
+    <None Include="wwwroot\ImportFiles\pbnotesA.txt" />
+    <None Include="wwwroot\ImportFiles\pbnotesB.txt" />
+    <None Include="wwwroot\ImportFiles\recipes.txt" />
+    <None Include="wwwroot\ImportFiles\starstuff.txt" />
+    <None Include="wwwroot\ImportFiles\TimeZones.txt" />
+    <None Include="wwwroot\ImportFiles\trvth1.txt" />
+    <None Include="wwwroot\ImportFiles\trvth2.txt" />
+    <None Include="wwwroot\ImportFiles\trvth3.txt" />
+    <None Include="wwwroot\ImportFiles\trvth4.txt" />
+  </ItemGroup>
+
+</Project>
