@@ -70,10 +70,13 @@ namespace Notes2017.Controllers
                 return;
 
             IdentityRole idr = new IdentityRole("Admin");
+            idr.NormalizedName = idr.Name.ToUpper();
             db.Roles.Add(idr);
             idr = new IdentityRole("User");
+            idr.NormalizedName = idr.Name.ToUpper();
             db.Roles.Add(idr);
             idr = new IdentityRole("CrazyWords");
+            idr.NormalizedName = idr.Name.ToUpper();
             db.Roles.Add(idr);
             db.SaveChanges();
 
