@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Access List ";
     NoteAccess myaccess = ViewBag.MyAccess;
-    List<string> IDs = (List<string>)(ViewBag.IDs); // 2 long
+    List<string> ds = (List<string>)(ViewBag.IDs); // 2 long
 }
 
 <h2>Access List for @ViewBag.NoteFileName</h2>
@@ -72,7 +72,7 @@
         <td>
             @if (myaccess.EditAccess)
             {@Html.ActionLink("Edit", "Edit", new { id = item.UserID, id2 = item.NoteFileID }) 
-                if (string.Compare(IDs[0], item.UserID) != 0 && string.Compare(IDs[1], item.UserID) != 0)
+                if (string.Compare(ds[0], item.UserID) != 0 && string.Compare(ds[1], item.UserID) != 0)
                 { <span>|</span> @Html.ActionLink("Delete", "Delete", new { id = item.UserID, id2 = item.NoteFileID }) }
             }
         </td>
