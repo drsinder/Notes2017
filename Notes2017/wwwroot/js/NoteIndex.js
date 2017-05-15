@@ -31,60 +31,61 @@ window.onload = function () {
     document.onkeypress = function (e) {
         var key = code(e);
         // do something with key
-        if (key == 76) {
-            var x = document.getElementById("toIndex");
+        var x;
+        if (key === 76) {
+            x = document.getElementById("toIndex");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 72 && e.shiftKey == true) {
-            var x = document.getElementById("asHtml");
+        else if (key === 72 && e.shiftKey === true) {
+            x = document.getElementById("asHtml");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 104 && e.shiftKey == false) {
-            var x = document.getElementById("asHtmlAlt");
+        else if (key === 104 && e.shiftKey === false) {
+            x = document.getElementById("asHtmlAlt");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 109 && e.shiftKey == false) {
-            var x = document.getElementById("toMail");
+        else if (key === 109 && e.shiftKey === false) {
+            x = document.getElementById("toMail");
             if (x != null) {
                 x.click();
             }
-        } else if (key == 78) {
-            var x = document.getElementById("toWrite");
-            if (x != null) {
-                x.click();
-            }
-        }
-        else if (key == 79) {
-            var x = document.getElementById("toXMarked");
+        } else if (key === 78) {
+            x = document.getElementById("toWrite");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 65) {
-            var x = document.getElementById("toAccess");
+        else if (key === 79) {
+            x = document.getElementById("toXMarked");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 83) {
-            var x = document.getElementById("toSearch");
+        else if (key === 65) {
+            x = document.getElementById("toAccess");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 88) {
-            var x = document.getElementById("toExport");
+        else if (key === 83) {
+            x = document.getElementById("toSearch");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 112) {
+        else if (key === 88) {
+            x = document.getElementById("toExport");
+            if (x != null) {
+                x.click();
+            }
+        }
+        else if (key === 112) {
             $('#myModal').modal('show');
         }
     }

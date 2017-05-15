@@ -31,109 +31,110 @@ window.onload = function () {
     document.onkeypress = function (e) {
         var key = code(e);
         // do something with key
-        if (key == 73) {
-            var x = document.getElementById("toIndex");
+        var x;
+        if (key === 73) {
+            x = document.getElementById("toIndex");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 32 && e.shiftKey != true) {
-            var x = document.getElementById("toSequence");
+        else if (key === 32 && e.shiftKey !== true) {
+            x = document.getElementById("toSequence");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 32 && e.shiftKey == true) {
-            var x = document.getElementById("continueSearch");
+        else if (key === 32 && e.shiftKey === true) {
+            x = document.getElementById("continueSearch");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 13 && e.shiftKey == true) {
-            var x = document.getElementById("toNextBase");
+        else if (key === 13 && e.shiftKey === true) {
+            x = document.getElementById("toNextBase");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 47) {
-            var x = document.getElementById("toNextNote");
+        else if (key === 47) {
+            x = document.getElementById("toNextNote");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 119 && e.shiftKey == true) {
-            var x = document.getElementById("toPrevBase");
+        else if (key === 119 && e.shiftKey === true) {
+            x = document.getElementById("toPrevBase");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 119) {
-            var x = document.getElementById("toPrevNote");
+        else if (key === 119) {
+            x = document.getElementById("toPrevNote");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 70 && e.shiftKey == true) {
-            var x = document.getElementById("toForward");
+        else if (key === 70 && e.shiftKey === true) {
+            x = document.getElementById("toForward");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 77 && e.shiftKey == true) {
-            var x = document.getElementById("toMark");
+        else if (key === 77 && e.shiftKey === true) {
+            x = document.getElementById("toMark");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 109 && e.shiftKey == false) {
-            var x = document.getElementById("toMail");
+        else if (key === 109 && e.shiftKey === false) {
+            x = document.getElementById("toMail");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 78 && e.shiftKey == true) {
-            var x = document.getElementById("toNewResponse");
+        else if (key === 78 && e.shiftKey === true) {
+            x = document.getElementById("toNewResponse");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 69 && e.shiftKey == true) {
-            var x = document.getElementById("toEdit");
+        else if (key === 69 && e.shiftKey === true) {
+            x = document.getElementById("toEdit");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 68 && e.shiftKey == true) {
-            var x = document.getElementById("toDelete");
+        else if (key === 68 && e.shiftKey === true) {
+            x = document.getElementById("toDelete");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 67 && e.shiftKey == true) {
-            var x = document.getElementById("toCopy");
+        else if (key === 67 && e.shiftKey === true) {
+            x = document.getElementById("toCopy");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 72 && e.shiftKey == true) {
-            var x = document.getElementById("asHtml");
+        else if (key === 72 && e.shiftKey === true) {
+            x = document.getElementById("asHtml");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 104 && e.shiftKey == false) {
-            var x = document.getElementById("asHtmlAlt");
+        else if (key === 104 && e.shiftKey === false) {
+            x = document.getElementById("asHtmlAlt");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 83 && e.shiftKey == true) {
-            var x = document.getElementById("toSearch");
+        else if (key === 83 && e.shiftKey === true) {
+            x = document.getElementById("toSearch");
             if (x != null) {
                 x.click();
             }
         }
-        else if (key == 112) {
+        else if (key === 112) {
             $('#myModal').modal('show');
         }
     }

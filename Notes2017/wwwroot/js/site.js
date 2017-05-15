@@ -55,22 +55,21 @@ channel.bind('sys_message_event', function (data) {
 
 presence.bind('pusher:subscription_succeeded', function (members) {
     members.each(function (member) {
-        add_member(member.id, member.info);
+        window.add_member(member.id, member.info);
     });
-})
-
+});
 presence.bind('pusher:member_added', function (member) {
-    add_member(member.id, member.info);
+    window.add_member(member.id, member.info);
 });
 
 presence.bind('pusher:member_removed', function (member) {
-    remove_member(member.id, member.info);
+    window.remove_member(member.id, member.info);
 });
 
 presence.bind('chat_request_event', function (data) {
     if (username == null)
         return;
-    if (username.innerHTML != data.username)
+    if (username.innerHTML !== data.username)
         return;
 
     document.getElementById('oktochat').innerHTML = data.username;
@@ -125,7 +124,7 @@ $('#chatsendmessage').click(function () {
 
 $('#message').keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
-    if (keycode == '13') {
+    if (keycode === '13') {
         sendChatMessage();
     }
 });
