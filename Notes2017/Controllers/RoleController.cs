@@ -68,11 +68,12 @@ namespace Notes2017.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IdentityRole role)
         {
+            role.NormalizedName = role.Name.ToUpper();
             _db.Roles.Add(role);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        
         public async Task<IActionResult> Delete(string id)
         {
             IdentityRole role = await _db.Roles.Where(p => p.Id == id).FirstOrDefaultAsync();
