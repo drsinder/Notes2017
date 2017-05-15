@@ -1,8 +1,8 @@
-@model Notes2017.Models.Subscription
+@model Subscription
 
 @{
-    IEnumerable<SelectListItem> FilesList = (IEnumerable<SelectListItem>)ViewBag.FilesList;
-    string UserID = ViewBag.UserID;
+    IEnumerable<SelectListItem> filesList = (IEnumerable<SelectListItem>)ViewBag.FilesList;
+    string userId = ViewBag.UserID;
     ViewData["Title"] = "Create";
 }
 
@@ -16,7 +16,7 @@
         <div class="form-group">
             <label asp-for="NoteFileID" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                @Html.DropDownList("AFiles", FilesList, htmlAttributes: new { @class = "short-input" })
+                @Html.DropDownList("AFiles", filesList, htmlAttributes: new { @class = "short-input" })
 
                 <input asp-for="NoteFileID" class="form-control" />
                 <span asp-validation-for="NoteFileID" class="text-danger" />
@@ -25,7 +25,7 @@
         <div class="form-group">
             <span class="col-md-2 control-label"></span>
             <div class="col-md-10">
-                <input asp-for="SubscriberID" value=@UserID class="form-control" />
+                <input asp-for="SubscriberID" value=@userId class="form-control" />
                 <span asp-validation-for="SubscriberID" class="text-danger" />
             </div>
         </div>

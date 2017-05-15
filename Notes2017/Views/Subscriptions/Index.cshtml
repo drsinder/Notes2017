@@ -1,9 +1,9 @@
 @using Notes2017.Data
-@model IEnumerable<Notes2017.Models.Subscription>
+@model IEnumerable<Subscription>
 
 @{
     ViewData["Title"] = "Subscription Index";
-    ApplicationDbContext Db = ViewBag.Db;
+    ApplicationDbContext db = ViewBag.Db;
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -24,8 +24,8 @@
     
 @foreach (var item in Model) {
 
-    string file = Db.NoteFile.Single(p => p.NoteFileID == item.NoteFileID).NoteFileName;
-    string name = Db.Users.Single(p => p.Id == item.SubscriberID).UserName;
+    string file = db.NoteFile.Single(p => p.NoteFileID == item.NoteFileID).NoteFileName;
+    string name = db.Users.Single(p => p.Id == item.SubscriberID).UserName;
     <tr>
         <td>
             @file

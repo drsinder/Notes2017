@@ -1,10 +1,10 @@
 @using Notes2017.Data
-@model Notes2017.Models.Subscription
+@model Subscription
 
 @{
     ViewData["Title"] = "Delete";
-    ApplicationDbContext Db = ViewBag.Db;
-    string file = Db.NoteFile.Single(p => p.NoteFileID == Model.NoteFileID).NoteFileName;
+    ApplicationDbContext db = ViewBag.Db;
+    string file = db.NoteFile.Single(p => p.NoteFileID == Model.NoteFileID).NoteFileName;
 
 }
 
