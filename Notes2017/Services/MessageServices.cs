@@ -44,9 +44,9 @@ namespace Notes2017.Services
         {
             // Plug in your email service here to send an email.
 
-            var apiKey = App_Code.Global.SendGridApiKey;
+            var apiKey = Globals.SendGridApiKey;
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(App_Code.Global.SendGridEmail, App_Code.Global.EmailName);
+            var from = new EmailAddress(Globals.SendGridEmail, Globals.EmailName);
             var to = new EmailAddress(email);
             SendGridMessage msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
 
@@ -69,11 +69,11 @@ namespace Notes2017.Services
         public Task SendSmsAsync(string number, string message)
         {
             // Plug in your SMS service here to send a text message.
-            TwilioClient.Init(App_Code.Global.TwilioName, App_Code.Global.TwilioPassword);
+            TwilioClient.Init(Globals.TwilioName, Globals.TwilioPassword);
 
             var msg = MessageResource.Create(
                  to: new PhoneNumber(number),
-                from: new PhoneNumber(App_Code.Global.TwilioNumber),
+                from: new PhoneNumber(Globals.TwilioNumber),
                 body: message);
 
             return Task.FromResult(0);
