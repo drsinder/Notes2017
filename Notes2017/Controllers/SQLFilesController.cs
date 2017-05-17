@@ -143,13 +143,13 @@ namespace Notes2017.Controllers
             string extonly = Path.GetExtension(fname);
 
 
-            if (ModelState.IsValid)
+            if (true || ModelState.IsValid)
             {
                 try
                 {
                     if (file.Length > 0 && file.Length < 0x7FFFFFFF )
                     {
-                        if (!file.ContentType.StartsWith("image"))
+                        if (!file.ContentType.StartsWith("image") && !User.IsInRole("Admin"))
                             return RedirectToAction("Index");
 
                         SQLFileContent content = new SQLFileContent {Content = new byte[file.Length]};
