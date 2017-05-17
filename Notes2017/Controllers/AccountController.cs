@@ -224,6 +224,7 @@ namespace Notes2017.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
+            HttpContext.Session.Remove("TZone");
             var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
@@ -235,6 +236,7 @@ namespace Notes2017.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
+            HttpContext.Session.Remove("TZone");
             if (remoteError != null)
             {
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
@@ -294,6 +296,7 @@ namespace Notes2017.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
+            HttpContext.Session.Remove("TZone");
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
