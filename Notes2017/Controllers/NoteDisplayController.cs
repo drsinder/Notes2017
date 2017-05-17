@@ -158,6 +158,8 @@ namespace Notes2017.Controllers
         {
             HttpContext.Session.SetInt32("IsSearch", 0);  // Mark not doing a search
 
+            bool isAdmin = User.IsInRole("Admin");
+
             if (id == null)
             {
                 return RedirectToAction("Index", "NoteFileList");
@@ -172,7 +174,7 @@ namespace Notes2017.Controllers
                 ViewBag.Message = "Could not find access for fileid '" + id + "'.";
                 return View("Error");
             }
-            else if (!myacc.Read && !myacc.Write)
+            if (!myacc.Read && !myacc.Write)
             {
                 NoteFile nf = await NoteDataManager.GetFileById(_db, (int)id);
                 if (nf == null)
@@ -195,6 +197,10 @@ namespace Notes2017.Controllers
                 return View("Error");
             }
 
+            if (isAdmin)
+            {
+                myacc.Director = true;
+            }
             NoteDisplayIndexModel idxModel = new NoteDisplayIndexModel()
             {
                 myAccess = myacc,
