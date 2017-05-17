@@ -23,7 +23,6 @@
     **--------------------------------------------------------------------------
     */*@
 
-@using Notes2017.App_Code
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
 <html>
@@ -135,7 +134,7 @@
             <p>&copy; 2017 - Dale Sinder</p>
             <span hidden id="notesusername">@User.Identity.Name</span>
             <span hidden id="notesuserid">@ViewBag.UserId</span>
-            <span hidden id="pusherkey">@Global.PusherKey</span>
+            <span hidden id="pusherkey">@Globals.PusherKey</span>
         </footer>
     </div>
 
