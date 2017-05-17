@@ -22,8 +22,6 @@
     **
     **--------------------------------------------------------------------------
     */*@
-
-@using Notes2017.App_Code 
 @model List<SQLFile>
 @{ ViewData["Title"] = "Thumb Nails"; }
 
@@ -34,8 +32,8 @@
     @foreach (var item in Model)
     {
         string url = "/File/GetById/" + item.FileId;
-        string show = url.Replace("~", Global.ProductionUrl);
-        string details = Global.ProductionUrl + "/SQLFiles/Details/" + item.FileId;
+        string show = url.Replace("~", Globals.ProductionUrl);
+        string details = Globals.ProductionUrl + "/SQLFiles/Details/" + item.FileId;
        <tr>
             <td>
                 <div class="row">
