@@ -51,6 +51,7 @@ namespace Notes2017.Controllers
         {
             SetStuff();
 
+            // ReSharper disable once Mvc.ViewNotResolved
             return base.View();
         }
 
@@ -58,6 +59,7 @@ namespace Notes2017.Controllers
         {
             SetStuff();
 
+            // ReSharper disable once Mvc.ViewNotResolved
             return base.View(model);
         }
 
@@ -94,6 +96,7 @@ namespace Notes2017.Controllers
         {
             SetStuff(userManager);
 
+            // ReSharper disable once Mvc.ViewNotResolved
             return base.View();
         }
 
@@ -101,6 +104,7 @@ namespace Notes2017.Controllers
         {
             SetStuff(userManager);
 
+            // ReSharper disable once Mvc.ViewNotResolved
             return base.View(model);
         }
 

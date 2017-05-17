@@ -31,7 +31,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Notes2017.Services;
 using Microsoft.ApplicationInsights;
-using Notes2017.App_Code;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Notes2017.Data;
@@ -61,7 +60,7 @@ namespace Notes2017.Controllers
             _context = context;
 
             _telemetry = tel;
-            _telemetry.InstrumentationKey = Global.InstKey;
+            _telemetry.InstrumentationKey = Globals.InstKey;
         }
 
         // GET: DataSpy

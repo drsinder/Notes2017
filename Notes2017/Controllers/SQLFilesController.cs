@@ -34,7 +34,6 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using Microsoft.Net.Http.Headers;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -116,9 +115,9 @@ namespace Notes2017.Controllers
                 return NotFound();
             }
 
-            string fileUrl1 = Global.ProductionUrl + "/File/GetById/" + sQLFile.FileId;
+            string fileUrl1 = Globals.ProductionUrl + "/File/GetById/" + sQLFile.FileId;
             ViewBag.Url1 = fileUrl1;
-            string fileUrl2 = Global.ProductionUrl + "/File/GetByName/" + sQLFile.FileName;
+            string fileUrl2 = Globals.ProductionUrl + "/File/GetByName/" + sQLFile.FileName;
             ViewBag.Url2 = fileUrl2;
 
             return View(sQLFile);

@@ -33,7 +33,6 @@ using Notes2017.Models;
 using Notes2017.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Notes2017.Data;
-using Notes2017.App_Code;
 using Microsoft.EntityFrameworkCore;
 
 namespace Notes2017.Controllers
@@ -85,7 +84,7 @@ namespace Notes2017.Controllers
             }
 
             ds.Add(_userManager.GetUserId(User));
-            ds.Add(Global.AccessOther());
+            ds.Add(Globals.AccessOther());
 
             ViewBag.names = names;
             ViewBag.IDs = ds;
@@ -100,8 +99,8 @@ namespace Notes2017.Controllers
         /// <returns>username</returns>
         public string GetUserNameFromID(string id)
         {
-            if (string.Compare(Global.AccessOther(), id) == 0)
-                return Global.AccessOther();
+            if (string.Compare(Globals.AccessOther(), id) == 0)
+                return Globals.AccessOther();
 
             string myname = _db.Users
                 .Where( p => p.Id == id)

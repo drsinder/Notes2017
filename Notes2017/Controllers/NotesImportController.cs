@@ -32,7 +32,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Notes2017.Models;
 using Microsoft.ApplicationInsights;
-using Notes2017.App_Code;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Notes2017.Data;
@@ -65,7 +64,7 @@ namespace Notes2017.Controllers
             _db = applicationDbContext;
 
             _telemetry = tel;
-            _telemetry.InstrumentationKey = Global.InstKey;
+            _telemetry.InstrumentationKey = Globals.InstKey;
         }
 
         // GET: NotesImport
@@ -275,7 +274,7 @@ namespace Notes2017.Controllers
 
                                 // author
                                 nc.AuthorName = line.Substring(25).Trim(spaceTrim);
-                                nc.AuthorID = Global.ImportedAuthorId();   //"imported";
+                                nc.AuthorID = Globals.ImportedAuthorId();   //"imported";
                                 line = await file.ReadLineAsync();  // skip line
                                 line = await CheckFf(line, file);
                             }
@@ -474,7 +473,7 @@ namespace Notes2017.Controllers
                             }
 
                             nc.AuthorName = name + "/" + group;
-                            nc.AuthorID = Global.ImportedAuthorId();   //"imported";
+                            nc.AuthorID = Globals.ImportedAuthorId();   //"imported";
 
                             await file.ReadLineAsync(); // skip lines to get to content
                             line = await file.ReadLineAsync(); // skip lines to get to content

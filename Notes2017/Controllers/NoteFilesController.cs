@@ -29,7 +29,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Notes2017.Models;
 using Microsoft.ApplicationInsights;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,7 +50,7 @@ namespace Notes2017.Controllers
             _db = applicationDbContext;
 
             _telemetry = tel;
-            _telemetry.InstrumentationKey = Global.InstKey;
+            _telemetry.InstrumentationKey = Globals.InstKey;
         }
 
         /// <summary>
@@ -104,7 +103,7 @@ namespace Notes2017.Controllers
             await CreateNoteFile("announce", "Notes 2017 Announcements");
             NoteFile nf4 = await NoteDataManager.GetFileByName(_db, "announce");
             int padid = nf4.NoteFileID;
-            NoteAccess access = await AccessManager.GetOneAccess(_db, Global.AccessOther(), padid);
+            NoteAccess access = await AccessManager.GetOneAccess(_db, Globals.AccessOther(), padid);
             access.Read = true;
 
             _db.Entry(access).State = EntityState.Modified;
@@ -118,7 +117,7 @@ namespace Notes2017.Controllers
             await CreateNoteFile("pbnotes", "Public Notes");
             NoteFile nf4 = await NoteDataManager.GetFileByName(_db, "pbnotes");
             int padid = nf4.NoteFileID;
-            NoteAccess access = await AccessManager.GetOneAccess(_db, Global.AccessOther(), padid);
+            NoteAccess access = await AccessManager.GetOneAccess(_db, Globals.AccessOther(), padid);
             access.Read = true;
             access.Respond = true;
             access.Write = true;
@@ -134,7 +133,7 @@ namespace Notes2017.Controllers
             await CreateNoteFile("noteshelp", "Help with Notes 2017");
             NoteFile nf4 = await NoteDataManager.GetFileByName(_db, "noteshelp");
             int padid = nf4.NoteFileID;
-            NoteAccess access = await AccessManager.GetOneAccess(_db, Global.AccessOther(), padid);
+            NoteAccess access = await AccessManager.GetOneAccess(_db, Globals.AccessOther(), padid);
             access.Read = true;
             access.Respond = true;
             access.Write = true;
@@ -150,7 +149,7 @@ namespace Notes2017.Controllers
             await CreateNoteFile("pad", "Traditional Pad");
             NoteFile nf4 = await NoteDataManager.GetFileByName(_db, "pad");
             int padid = nf4.NoteFileID;
-            NoteAccess access = await AccessManager.GetOneAccess(_db, Global.AccessOther(), padid);
+            NoteAccess access = await AccessManager.GetOneAccess(_db, Globals.AccessOther(), padid);
             access.Read = true;
             access.Respond = true;
             access.Write = true;

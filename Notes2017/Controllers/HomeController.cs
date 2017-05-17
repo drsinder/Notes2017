@@ -37,7 +37,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using Notes2017.Models;
 using Notes2017.Services;
@@ -184,7 +183,7 @@ namespace Notes2017.Controllers
             {
                 Encrypted = true
             };
-            var pusher = new Pusher(Global.PusherAppId, Global.PusherKey, Global.PusherSecret, options);
+            var pusher = new Pusher(Globals.PusherAppId, Globals.PusherKey, Globals.PusherSecret, options);
 
             if (id2)
             {
@@ -217,7 +216,7 @@ namespace Notes2017.Controllers
             {
                 Encrypted = true
             };
-            var pusher = new Pusher(Global.PusherAppId, Global.PusherKey, Global.PusherSecret, options);
+            var pusher = new Pusher(Globals.PusherAppId, Globals.PusherKey, Globals.PusherSecret, options);
 
             pusher.Trigger("notes-channel", "sys_message_event", new {x.message });
 
@@ -234,7 +233,7 @@ namespace Notes2017.Controllers
             {
                 Encrypted = true
             };
-            var pusher = new Pusher(Global.PusherAppId, Global.PusherKey, Global.PusherSecret, options);
+            var pusher = new Pusher(Globals.PusherAppId, Globals.PusherKey, Globals.PusherSecret, options);
 
             if (!_signInManager.IsSignedIn(User))
                 return new UnauthorizedResult();
@@ -292,8 +291,8 @@ namespace Notes2017.Controllers
             TimeZoneModel model = new TimeZoneModel();
             ApplicationUser user = await _userManager.Users.SingleAsync(p => p.Id == _userManager.GetUserId(User));
             model.TimeZoneID = user.TimeZoneID;
-            if (model.TimeZoneID < Global.ZoneMinId)
-                model.TimeZoneID = Global.ZoneUtcid;
+            if (model.TimeZoneID < Globals.ZoneMinId)
+                model.TimeZoneID = Globals.ZoneUtcid;
 
             List<TZone> tzones = await _db.TZone.OrderBy(p => p.OffsetHours).ToListAsync();
 

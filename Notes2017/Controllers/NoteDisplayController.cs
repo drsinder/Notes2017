@@ -37,7 +37,6 @@ using Notes2017.Services;
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.ApplicationInsights;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
@@ -73,9 +72,9 @@ namespace Notes2017.Controllers
             _db = applicationDbContext;
 
             _telemetry = tel;
-            _telemetry.InstrumentationKey = Global.InstKey;
+            _telemetry.InstrumentationKey = Globals.InstKey;
 
-            Global.EmailSender = _emailSender;
+            Globals.EmailSender = _emailSender;
         }
 
         /// <summary>

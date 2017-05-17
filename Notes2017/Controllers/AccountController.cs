@@ -188,7 +188,7 @@ namespace Notes2017.Controllers
                     await _userManager.AddToRoleAsync(user, "User");
                     await _userManager.AddToRoleAsync(user, "CrazyWords");
 
-                    string defaultemail = App_Code.Global.AdminEmail;
+                    string defaultemail = Globals.AdminEmail;
                     if (model.Email == defaultemail)
                         await _userManager.AddToRoleAsync(user, "Admin");
 
@@ -320,7 +320,7 @@ namespace Notes2017.Controllers
                         await _userManager.AddToRoleAsync(user, "User");
                         await _userManager.AddToRoleAsync(user, "CrazyWords");
 
-                        string defaultemail = App_Code.Global.AdminEmail;
+                        string defaultemail = Globals.AdminEmail;
                         if (model.Email == defaultemail)
                             await _userManager.AddToRoleAsync(user, "Admin");
 
