@@ -27,7 +27,6 @@ using System;
 using PusherServer;
 using Hangfire;
 using Notes2017.Models;
-using Notes2017.App_Code;
 
 namespace Notes2017
 {
@@ -42,7 +41,7 @@ namespace Notes2017
             {
                 Encrypted = true
             };
-            Pusher pusher = new Pusher(Global.PusherAppId, Global.PusherKey, Global.PusherSecret, options);
+            Pusher pusher = new Pusher(Globals.PusherAppId, Globals.PusherKey, Globals.PusherSecret, options);
             var data = new { message = stuff };
             pusher.Trigger("private-data-" + username, "update-time", data);
         }

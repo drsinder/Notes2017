@@ -36,7 +36,6 @@ using Microsoft.Extensions.Logging;
 using Notes2017.Data;
 using Notes2017.Models;
 using Notes2017.Services;
-using Notes2017.App_Code;
 using Hangfire;
 using Hangfire.SqlServer;
 using Hangfire.Dashboard;
@@ -97,26 +96,26 @@ namespace Notes2017
 
             services.AddMvc();
 
-            Global.AdminEmail = Configuration["DefaultAdmin:Email"];
-            Global.SendGridEmail = Configuration["DefaultAdmin:SendGridEmail"];
-            Global.EmailName = Configuration["DefaultAdmin:SendGridEmailName"];
-            Global.SendGridApiKey = Configuration["DefaultAdmin:SendGridApiKey"];
+            Globals.AdminEmail = Configuration["DefaultAdmin:Email"];
+            Globals.SendGridEmail = Configuration["DefaultAdmin:SendGridEmail"];
+            Globals.EmailName = Configuration["DefaultAdmin:SendGridEmailName"];
+            Globals.SendGridApiKey = Configuration["DefaultAdmin:SendGridApiKey"];
 
-            Global.TwilioName = Configuration["DefaultAdmin:TwilioName"];
-            Global.TwilioPassword = Configuration["DefaultAdmin:TwilioPassword"];
-            Global.TwilioNumber = Configuration["DefaultAdmin:TwilioNumber"];
+            Globals.TwilioName = Configuration["DefaultAdmin:TwilioName"];
+            Globals.TwilioPassword = Configuration["DefaultAdmin:TwilioPassword"];
+            Globals.TwilioNumber = Configuration["DefaultAdmin:TwilioNumber"];
 
 
-            Global.InstKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            Globals.InstKey = Configuration["ApplicationInsights:InstrumentationKey"];
 
-            Global.ProductionUrl = Configuration["Version:ProductionUrl"];
+            Globals.ProductionUrl = Configuration["Version:ProductionUrl"];
 
-            Global.ZoneMinId = int.Parse(Configuration["TZone:MinID"]);
-            Global.ZoneUtcid = int.Parse(Configuration["TZone:UTCID"]);
+            Globals.ZoneMinId = int.Parse(Configuration["TZone:MinID"]);
+            Globals.ZoneUtcid = int.Parse(Configuration["TZone:UTCID"]);
 
-            Global.PusherAppId = Configuration["Pusher:AppId"];
-            Global.PusherKey = Configuration["Pusher:AppKey"];
-            Global.PusherSecret = Configuration["Pusher:AppSecret"];
+            Globals.PusherAppId = Configuration["Pusher:AppId"];
+            Globals.PusherKey = Configuration["Pusher:AppKey"];
+            Globals.PusherSecret = Configuration["Pusher:AppSecret"];
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
