@@ -28,7 +28,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.ApplicationInsights;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -69,14 +68,14 @@ namespace Notes2017.Models
         /// <returns></returns>
         public static async Task<bool> CreateBaseEntries(ApplicationDbContext db, UserManager<ApplicationUser> userManager, string userId, int fileId)
         {
-            if (await GetAccess(db, Global.AccessOther(), fileId) == null)
+            if (await GetAccess(db, Globals.AccessOther(), fileId) == null)
             {
-                bool flag1 = await Create(db, Global.AccessOther(), fileId, false, false, false, false, false, false, false);
+                bool flag1 = await Create(db, Globals.AccessOther(), fileId, false, false, false, false, false, false, false);
                 if (!flag1)
                     return false;
             }
 
-            if (string.Compare(((await GetAccess(db, userId, fileId)).UserID), Global.AccessOther()) == 0)
+            if (string.Compare(((await GetAccess(db, userId, fileId)).UserID), Globals.AccessOther()) == 0)
             {
                 bool flag1 = await Create(db, userId, fileId, true, true, true, true, true, true, true);
                 if (!flag1)
@@ -123,7 +122,7 @@ namespace Notes2017.Models
 
             // If specific user not in list use "Other"
             return await db.NoteAccess
-                .Where(p => p.UserID == Global.AccessOther())
+                .Where(p => p.UserID == Globals.AccessOther())
                 .Where(p => p.NoteFileID == fileId).FirstOrDefaultAsync();
         }
 

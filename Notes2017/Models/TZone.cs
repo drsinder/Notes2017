@@ -26,7 +26,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Notes2017.App_Code;
 using Notes2017.Data;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -37,11 +36,13 @@ using System.Threading.Tasks;
 
 namespace Notes2017.Models
 {
+    // ReSharper disable once InconsistentNaming
     public class TZone
     {
         [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // ReSharper disable once InconsistentNaming
         public int TZoneID { get; set; }
 
         [Required]
@@ -104,7 +105,7 @@ namespace Notes2017.Models
             }
             catch
             {
-                int tzid = Global.ZoneUtcid;
+                int tzid = Globals.ZoneUtcid;
                 if (signInManager.IsSignedIn(userx))
                 {
                     try
@@ -117,8 +118,8 @@ namespace Notes2017.Models
                         // ignored
                     }
                 }
-                if (tzid < Global.ZoneMinId)
-                    tzid = Global.ZoneUtcid; // UTC is default timezone
+                if (tzid < Globals.ZoneMinId)
+                    tzid = Globals.ZoneUtcid; // UTC is default timezone
 
                 var tz = await db.TZone.SingleAsync(p => p.TZoneID == tzid);
                 httpContext.Session.Set("TZone", tz.ToBytes());  // save TZone in Session

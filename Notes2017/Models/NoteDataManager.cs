@@ -29,7 +29,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Notes2017.App_Code;
 using Notes2017.Services;
 using System.Text;
 //using Hangfire;
@@ -255,7 +254,7 @@ namespace Notes2017.Models
                     //emails.Add(usr.Email);
 
                     fv.ToEmail = usr.Email;
-                    await SendNotesAsync(fv, db, Global.EmailSender, "BackgroundJob", "Notes 2017");
+                    await SendNotesAsync(fv, db, Globals.EmailSender, "BackgroundJob", "Notes 2017");
                 }
             }
 
@@ -768,7 +767,7 @@ namespace Notes2017.Models
                     + "<p>Subject: " + nc.NoteSubject + "</p>"
                     + nc.LastEdited.ToShortDateString() + " " + nc.LastEdited.ToShortTimeString() + " UTC" + "</p>"
                     + nc.NoteBody
-                    + "<hr/>" + "<a href=\"" + Global.ProductionUrl + "/NoteDisplay/Display/" + fv.NoteID + "\" >Link to note</a>");
+                    + "<hr/>" + "<a href=\"" + Globals.ProductionUrl + "/NoteDisplay/Display/" + fv.NoteID + "\" >Link to note</a>");
             }
             else
             {
@@ -798,7 +797,7 @@ namespace Notes2017.Models
                     sb.Append(notes[i].NoteBody);
                     sb.Append("<hr/>");
                     sb.Append("<a href=\"");
-                    sb.Append(Global.ProductionUrl + "/NoteDisplay/Display/" + notes[i].NoteID + "\" >Link to note</a>");
+                    sb.Append(Globals.ProductionUrl + "/NoteDisplay/Display/" + notes[i].NoteID + "\" >Link to note</a>");
                 }
 
                 await emailSender.SendEmailAsync(fv.ToEmail, fv.NoteSubject, sb.ToString());
@@ -813,7 +812,7 @@ namespace Notes2017.Models
         //    StringBuilder sb = MakeEmail(fv, email, name, nc);
         //    string content = sb.ToString();
 
-        //    Global.emailSender.SendEmail(fv.ToEmail, fv.NoteSubject, content);
+        //    Globals.emailSender.SendEmail(fv.ToEmail, fv.NoteSubject, content);
 
         //    return;
         //}
@@ -834,7 +833,7 @@ namespace Notes2017.Models
 
             //foreach (string item in emails)
             //{
-            //    //Global.emailSender.SendEmail(item, fv.NoteSubject, content);
+            //    //Globals.emailSender.SendEmail(item, fv.NoteSubject, content);
             //}
 
             //return;
@@ -861,7 +860,7 @@ namespace Notes2017.Models
 
         //    foreach (string item in emails)
         //    {
-        //        Global.emailSender.SendEmail(item, fv.NoteSubject, content);
+        //        Globals.emailSender.SendEmail(item, fv.NoteSubject, content);
         //    }
 
         //    return;
@@ -898,7 +897,7 @@ namespace Notes2017.Models
         //        sb.Append(nc.NoteBody);
 
         //        sb.Append("<hr/><a href=\"");
-        //        sb.Append(Global.ProductionUrl);
+        //        sb.Append(Globals.ProductionUrl);
         //        sb.Append("/NoteDisplay/Display/");
         //        sb.Append(fv.NoteID);
         //        sb.Append("\">Link to note</a>");
@@ -912,7 +911,7 @@ namespace Notes2017.Models
         ////+ "<p>Subject: " + nc.NoteSubject + "</p>"
         ////+ nc.LastEdited.ToShortDateString() + " " + nc.LastEdited.ToShortTimeString() + " UTC" + "</p>"
         ////+ nc.NoteBody
-        ////+ "<hr/>" + "<a href=\"http:" + Global.ProductionUrl + "/NoteDisplay/Display/" + fv.NoteID + "\">Link to note</a>";
+        ////+ "<hr/>" + "<a href=\"http:" + Globals.ProductionUrl + "/NoteDisplay/Display/" + fv.NoteID + "\">Link to note</a>";
 
         //    }
 
@@ -946,10 +945,10 @@ namespace Notes2017.Models
         //    //            sb.Append(notes[i].NoteBody);
         //    //            sb.Append("<hr/>");
         //    //            sb.Append("<a href=\"");
-        //    //            sb.Append(Global.ProductionUrl + "/NoteDisplay/Display/" + notes[i].NoteID + "\">Link to note</a>");
+        //    //            sb.Append(Globals.ProductionUrl + "/NoteDisplay/Display/" + notes[i].NoteID + "\">Link to note</a>");
         //    //        }
 
-        //    //        Global.emailSender.SendEmail(fv.ToEmail, fv.NoteSubject, sb.ToString());
+        //    //        Globals.emailSender.SendEmail(fv.ToEmail, fv.NoteSubject, sb.ToString());
         //    //    }
 
         //    //    return;
